@@ -5,6 +5,20 @@ WindowManager:
 
 <MainScreen>
     name: 'main'
+    singleclass: singleclass
+    multiclass: multiclass
+    shortlength: shortlength
+    mediumlength: mediumlength
+    longlength: longlength
+    endurancelength: endurancelength
+    raining: raining
+    norain: norain
+    class1: class1
+    class2: class2
+    class3: class3
+    class4: class4
+    class5: class5
+
     FloatLayout:
         #Image:
             #id: bg
@@ -26,40 +40,162 @@ WindowManager:
                 outline_color: (0.78, 0.22, 0.22, 1)
                 outline_width: 2
                 font_size: 24
+            Label:
+                text: 'Single Class'
+                pos:(-515, 235)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 24
             CheckBox:
-                pos: (-605, 230)
-                background_checkbox_normal: "datafiles/images/check_empty.png"
+                id: singleclass
+                group: "opponent field"
+                pos: (20, 571)
+                size_hint: (None, None)
+                size: (30, 25)
+                active: True
+                background_radio_normal: "datafiles/images/check_empty.png"
+                background_radio_down: "datafiles/images/check_marked.png"
+            Label:
+                text: 'Multi-class'
+                pos:(-315, 235)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 24
+            CheckBox:
+                id: multiclass
+                group: "opponent field"
+                pos: (220, 571)
+                size_hint: (None, None)
+                size: (30, 25)
+                background_radio_normal: "datafiles/images/check_empty.png"
+                background_radio_down: "datafiles/images/check_marked.png"
         RelativeLayout:
-            pos: (70, 0)
-            Button:
-                text: 'DLC\nCHECK'
-                size_hint: (.07, .09)
-                halign: 'center'
-                pos:(0, 28)
+            pos: (0, 0)
+            Label:
+                text: 'RACE LENGTH'
+                pos:(-542, 170)
                 font_name: "datafiles/fonts/Ubuntu-M.ttf"
-                font_size: 22
-                background_normal: ''
-                background_color: '#c83737ff'
-                on_release: print('DLC CHECK')
-            Button:
-                text: 'GENERATE'
-                size_hint: (.15, .13)
-                pos:(120, 16)
+                outline_color: (0.78, 0.22, 0.22, 1)
+                outline_width: 2
+                font_size: 24
+            Label:
+                text: 'Short'
+                pos:(-550, 135)
                 font_name: "datafiles/fonts/Ubuntu-M.ttf"
-                font_size: 32
-                background_normal: ''
-                background_color: '#c83737ff'
-                on_release: print('GENERATE')
-            Button:
-                text: 'ABOUT'
-                size_hint: (.07, .09)
-                halign: 'center'
-                pos:(340, 28)
+                font_size: 24
+            CheckBox:
+                id: shortlength
+                group: "race length"
+                pos: (20, 471)
+                size_hint: (None, None)
+                size: (30, 25)
+                active: True
+                background_radio_normal: "datafiles/images/check_empty.png"
+                background_radio_down: "datafiles/images/check_marked.png"
+            Label:
+                text: 'Medium'
+                pos:(-400, 135)
                 font_name: "datafiles/fonts/Ubuntu-M.ttf"
-                font_size: 22
-                background_normal: ''
-                background_color: '#c83737ff'
-                on_release: print('ABOUT')
+                font_size: 24
+            CheckBox:
+                id: mediumlength
+                group: "race length"
+                pos: (155, 471)
+                size_hint: (None, None)
+                size: (30, 25)
+                background_radio_normal: "datafiles/images/check_empty.png"
+                background_radio_down: "datafiles/images/check_marked.png"
+            Label:
+                text: 'Long'
+                pos:(-555, 95)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 24
+            CheckBox:
+                id: longlength
+                group: "race length"
+                pos: (20, 431)
+                size_hint: (None, None)
+                size: (30, 25)
+                active: True
+                background_radio_normal: "datafiles/images/check_empty.png"
+                background_radio_down: "datafiles/images/check_marked.png"
+            Label:
+                text: 'Endurance'
+                pos:(-386, 95)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 24
+            CheckBox:
+                id: endurancelength
+                group: "race length"
+                pos: (155, 431)
+                size_hint: (None, None)
+                size: (30, 25)
+                background_radio_normal: "datafiles/images/check_empty.png"
+                background_radio_down: "datafiles/images/check_marked.png"
+        RelativeLayout:
+            pos: (0, 0)
+            Label:
+                text: 'RAINING CONDITIONS'
+                pos:(-495, 30)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                outline_color: (0.78, 0.22, 0.22, 1)
+                outline_width: 2
+                font_size: 24
+            Label:
+                text: 'Add rain weathers'
+                pos:(-480, -5)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 24
+            CheckBox:
+                id: raining
+                group: "raining conditions"
+                pos: (20, 331)
+                size_hint: (None, None)
+                size: (30, 25)
+                active: True
+                background_radio_normal: "datafiles/images/check_empty.png"
+                background_radio_down: "datafiles/images/check_marked.png"
+            Label:
+                text: 'Remove rain weathers'
+                pos:(-456, -45)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 24
+            CheckBox:
+                id: norain
+                group: "raining conditions"
+                pos: (20, 291)
+                size_hint: (None, None)
+                size: (30, 25)
+                active: True
+                background_radio_normal: "datafiles/images/check_empty.png"
+                background_radio_down: "datafiles/images/check_marked.png"
+        RelativeLayout:
+            pos: (0, 0)
+            Label:
+                text: 'CLASSES:'
+                pos:(20, 310)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                outline_color: (0.78, 0.22, 0.22, 1)
+                outline_width: 2
+                font_size: 28
+            Image:
+                id: class1
+                source: 'datafiles/images/class_null.png'
+                pos:(130, 310)
+            Image:
+                id: class2
+                source: 'datafiles/images/class_null.png'
+                pos:(210, 310)
+            Image:
+                id: class3
+                source: 'datafiles/images/class_null.png'
+                pos:(290, 310)
+            Image:
+                id: class4
+                source: 'datafiles/images/class_null.png'
+                pos:(370, 310)
+            Image:
+                id: class5
+                source: 'datafiles/images/class_null.png'
+                pos:(450, 310)
         RelativeLayout:
             size_hint: (.005, .95)
             pos: (0, 0)

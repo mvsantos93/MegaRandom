@@ -26,7 +26,26 @@ from kivy.uix.image import Image
 from kivy.uix.checkbox import CheckBox
 
 class MainScreen(Screen):
-    pass
+    def generate(self):
+        opponent_class = 'singleclass'
+        race_length = 'short'
+        weather = 'raining'
+
+        if self.ids.singleclass.active == True: opponent_class = 'singleclass'
+        elif self.ids.multiclass.active == True: opponent_class = 'multiclass'
+
+        if self.ids.shortlength.active == True: race_length = 'short'
+        elif self.ids.mediumlength.active == True: race_length = 'medium'
+        elif self.ids.longlength.active == True: race_length = 'long'
+        elif self.ids.endurancelength.active == True: race_length = 'endurance'
+
+        if self.ids.raining.active == True: weather = 'raining'
+        elif self.ids.norain.active == True: weather = 'norain'
+
+        print(opponent_class)
+        print(race_length)
+        print(weather)
+        
 
 class WindowManager(ScreenManager):
     pass
