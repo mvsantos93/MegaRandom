@@ -42,9 +42,7 @@ class MainScreen(Screen):
         if self.ids.raining.active == True: weather = 'raining'
         elif self.ids.norain.active == True: weather = 'norain'
 
-        print(opponent_class)
-        print(race_length)
-        print(weather)
+        
         
 
 class WindowManager(ScreenManager):

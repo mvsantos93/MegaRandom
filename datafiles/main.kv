@@ -18,6 +18,17 @@ WindowManager:
     class3: class3
     class4: class4
     class5: class5
+    trackname: trackname
+    duration: duration
+    starttime: starttime
+    weather1: weather1
+    weather2: weather2
+    weather3: weather3
+    weather4: weather4
+    starttype: starttype
+    pitstop: pitstop
+    sfcy: sfcy
+    fcy: fcy
 
     FloatLayout:
         #Image:
@@ -171,7 +182,11 @@ WindowManager:
             pos: (0, 0)
             Label:
                 text: 'CLASSES:'
-                pos:(20, 310)
+                valign: 'bottom'
+                halign: 'left'
+                pos: (600, 645)
+                size_hint: (1, 1)
+                text_size: self.size
                 font_name: "datafiles/fonts/Ubuntu-M.ttf"
                 outline_color: (0.78, 0.22, 0.22, 1)
                 outline_width: 2
@@ -196,6 +211,232 @@ WindowManager:
                 id: class5
                 source: 'datafiles/images/class_null.png'
                 pos:(450, 310)
+            Label:
+                text: 'TRACK:'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (600, 585)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                outline_color: (0.78, 0.22, 0.22, 1)
+                outline_width: 2
+                font_size: 28
+            Label:
+                id: trackname
+                text: 'Spa-Franchorchamps 2022'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (715, 587)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 26
+            Label:
+                text: 'DURATION:'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (600, 525)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                outline_color: (0.78, 0.22, 0.22, 1)
+                outline_width: 2
+                font_size: 28
+            Label:
+                id: duration
+                text: '20 minutes +1 lap'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (770, 527)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 26
+            Label:
+                text: 'START TIME:'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (600, 463)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                outline_color: (0.78, 0.22, 0.22, 1)
+                outline_width: 2
+                font_size: 28
+            Label:
+                id: starttime
+                text: '22h - 22x progression'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (780, 465)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 26
+            Label:
+                text: 'WEATHER FORECAST (sync to race)'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (600, 401)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                outline_color: (0.78, 0.22, 0.22, 1)
+                outline_width: 2
+                font_size: 28
+            Image:
+                id: weather1
+                source: 'datafiles/images/weather_null.png'
+                pos:(45, 10)
+            Image:
+                id: weather2
+                source: 'datafiles/images/weather_null.png'
+                pos:(145, 10)
+            Image:
+                id: weather3
+                source: 'datafiles/images/weather_null.png'
+                pos:(245, 10)
+            Image:
+                id: weather4
+                source: 'datafiles/images/weather_null.png'
+                pos:(345, 10)
+            Label:
+                text: 'START TYPE:'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (600, 265)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                outline_color: (0.78, 0.22, 0.22, 1)
+                outline_width: 2
+                font_size: 28
+            Label:
+                id: starttype
+                text: 'Standing'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (780, 267)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 26
+            Label:
+                text: 'MANDATORY PIT STOP:'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (600, 203)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                outline_color: (0.78, 0.22, 0.22, 1)
+                outline_width: 2
+                font_size: 28
+            Label:
+                id: pitstop
+                text: '4x Tires'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (925, 205)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 26
+            Label:
+                text: 'TRACK LIMIT WARNINGS:'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (600, 141)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                outline_color: (0.78, 0.22, 0.22, 1)
+                outline_width: 2
+                font_size: 28
+            Label:
+                id: tracklimits
+                text: '5'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (945, 143)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 26
+            Label:
+                text: 'SCHEDULED FULL COURSE YELLOW:'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (600, 79)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                outline_color: (0.78, 0.22, 0.22, 1)
+                outline_width: 2
+                font_size: 28
+            Label:
+                id: sfcy
+                text: 'Random'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (1090, 81)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 26
+            Label:
+                text: 'FULL COURSE YELLOWS:'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (600, 17)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                outline_color: (0.78, 0.22, 0.22, 1)
+                outline_width: 2
+                font_size: 28
+            Label:
+                id: fcy
+                text: 'Yes'
+                valign: 'bottom'
+                halign: 'left'
+                pos: (935, 19)
+                size_hint: (1, 1)
+                text_size: self.size
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 26
+        RelativeLayout:
+            pos: (70, 0)
+            Button:
+                text: 'DLC\nCHECK'
+                size_hint: (.07, .09)
+                halign: 'center'
+                pos:(0, 28)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 22
+                background_normal: ''
+                background_color: '#c83737ff'
+                on_release: print('DLC CHECK')
+            Button:
+                text: 'GENERATE'
+                size_hint: (.15, .13)
+                pos:(120, 16)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 32
+                background_normal: ''
+                background_color: '#c83737ff'
+                on_release: print('GENERATE')
+            Button:
+                text: 'ABOUT'
+                size_hint: (.07, .09)
+                halign: 'center'
+                pos:(340, 28)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 22
+                background_normal: ''
+                background_color: '#c83737ff'
+                on_release: print('ABOUT')
         RelativeLayout:
             size_hint: (.005, .95)
             pos: (0, 0)
