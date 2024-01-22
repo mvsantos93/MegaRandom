@@ -3,7 +3,7 @@ import sys
 if sys.__stdout__ is None or sys.__stderr__ is None:
     os.environ['KIVY_NO_CONSOLELOG'] = '1'
 
-import kivy, random, json, importlib, webbrowser
+import kivy, random, json, importlib, webbrowser, database as db
 kivy.require('2.1.0')
 
 from kivy.app import App
@@ -42,8 +42,8 @@ class MainScreen(Screen):
         if self.ids.raining.active == True: weather = 'raining'
         elif self.ids.norain.active == True: weather = 'norain'
 
-        
-        
+def dlc_check():
+    pass
 
 class WindowManager(ScreenManager):
     pass
