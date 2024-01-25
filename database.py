@@ -1,6 +1,8 @@
 import random
 
-classes = ['datafiles/images/class_null.png', 'datafiles/images/class01.png', 'datafiles/images/class02.png', 'datafiles/images/class03.png', 'datafiles/images/class04.png', 'datafiles/images/class05.png',
+null = ['datafiles/images/class_null.png']
+
+classes = ['datafiles/images/class01.png', 'datafiles/images/class02.png', 'datafiles/images/class03.png', 'datafiles/images/class04.png', 'datafiles/images/class05.png',
            'datafiles/images/class06.png', 'datafiles/images/class07.png', 'datafiles/images/class08.png', 'datafiles/images/class09.png', 'datafiles/images/class10.png', 'datafiles/images/class11.png', 
            'datafiles/images/class12.png', 'datafiles/images/class13.png', 'datafiles/images/class14.png', 'datafiles/images/class15.png', 'datafiles/images/class16.png', 'datafiles/images/class17.png', 
            'datafiles/images/class18.png', 'datafiles/images/class19.png', 'datafiles/images/class20.png', 'datafiles/images/class21.png', 'datafiles/images/class22.png', 'datafiles/images/class23.png', 

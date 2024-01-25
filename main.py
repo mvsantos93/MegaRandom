@@ -51,6 +51,67 @@ class MainScreen(Screen):
             class_type = random.choice(['normal', 'normal', 'normal', 'kart', 'normal', 'normal', 'normal', 'rx', 'normal', 'normal'])
             car_class1 = self.class_check(class_type)
             self.ids.class1.source = car_class1
+            self.ids.class2.source = db.null[0]
+            self.ids.class3.source = db.null[0]
+            self.ids.class4.source = db.null[0]
+            self.ids.class5.source = db.null[0]
+
+        if opponent_class == 'multiclass':
+            class_type = random.choice(['normal', 'normal', 'normal', 'kart', 'normal', 'normal', 'normal', 'rx', 'normal', 'normal'])
+
+            if class_type == 'normal': class_num = random.randint(1,5)
+            elif class_type == 'kart': class_num = random.randint(1,4)
+            elif class_type == 'rx': class_num = random.randint(1,3)
+
+            car_class_count = 0
+
+            while car_class_count < class_num:
+                if car_class_count == 0:
+                    car_class1 = self.class_check(class_type)
+                    self.ids.class1.source = car_class1
+                    car_class_count +=1
+                elif car_class_count == 1:
+                    car_class2 = self.class_check(class_type)
+                    if car_class2 != car_class1:
+                        self.ids.class2.source = car_class2
+                        car_class_count +=1
+                    else: pass
+                elif car_class_count == 2:
+                    car_class3 = self.class_check(class_type)
+                    if car_class3 != car_class2 and car_class3 != car_class1:
+                        self.ids.class3.source = car_class3
+                        car_class_count +=1
+                    else: pass
+                elif car_class_count == 3:
+                    car_class4 = self.class_check(class_type)
+                    if car_class4 != car_class3 and car_class4 != car_class2 and car_class4 != car_class1:
+                        self.ids.class4.source = car_class4
+                        car_class_count +=1
+                    else: pass
+                elif car_class_count == 4:
+                    car_class5 = self.class_check(class_type)
+                    if car_class5 != car_class4 and car_class5 != car_class3 and car_class5 != car_class2 and car_class5 != car_class1:
+                        self.ids.class5.source = car_class5
+                        car_class_count +=1
+                        break
+                    else: pass
+
+            if class_num == 1:
+                self.ids.class2.source = db.null[0]
+                self.ids.class3.source = db.null[0]
+                self.ids.class4.source = db.null[0]
+                self.ids.class5.source = db.null[0]
+            elif class_num == 2:
+                self.ids.class3.source = db.null[0]
+                self.ids.class4.source = db.null[0]
+                self.ids.class5.source = db.null[0]
+            elif class_num == 3:
+                self.ids.class4.source = db.null[0]
+                self.ids.class5.source = db.null[0]
+            elif class_num == 4:
+                self.ids.class5.source = db.null[0]
+
+        #poha
 
     def class_check(self, class_type):
         json_file = open("datafiles/dlcs.json", 'r')
@@ -70,19 +131,19 @@ class MainScreen(Screen):
         
 
         if dlc_file["Endurance pt1"] == False:
-            if 'class46' in choosen_class: return self.class_check()
+            if 'class45' in choosen_class: return self.class_check()
             elif 'class53' in choosen_class: return self.class_check()
         
         if dlc_file["Formula Hitech"] == False:
-            if 'class14' in choosen_class: return self.class_check()
-            elif 'class15' in choosen_class: return self.class_check()
+            if 'class12' in choosen_class: return self.class_check()
+            elif 'class13' in choosen_class: return self.class_check()
 
         if dlc_file["Racin'USA pt1"] == False:
-            if 'class07' in choosen_class: return self.class_check()
-            elif 'class49' in choosen_class: return self.class_check()
+            if 'class11' in choosen_class: return self.class_check()
+            elif 'class48' in choosen_class: return self.class_check()
 
         if dlc_file["Super Cars pt1"] == False:
-            if 'class13' in choosen_class: return self.class_check()
+            if 'class52' in choosen_class: return self.class_check()
 
         return choosen_class
         
