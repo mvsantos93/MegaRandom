@@ -1,7 +1,11 @@
 #:kivy 2.1.0
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
 
 WindowManager:
+    transition: FadeTransition()
     MainScreen:
+    DlcScreen:
+    AboutScreen:
 
 <MainScreen>
     name: 'main'
@@ -224,7 +228,7 @@ WindowManager:
                 font_size: 28
             Label:
                 id: trackname
-                text: 'Spa-Franchorchamps 2022'
+                text: ''
                 valign: 'bottom'
                 halign: 'left'
                 pos: (715, 518)
@@ -245,7 +249,7 @@ WindowManager:
                 font_size: 28
             Label:
                 id: duration
-                text: '20 minutes +1 lap'
+                text: ''
                 valign: 'bottom'
                 halign: 'left'
                 pos: (770, 466)
@@ -266,7 +270,7 @@ WindowManager:
                 font_size: 28
             Label:
                 id: starttime
-                text: '22h - 22x progression'
+                text: ''
                 valign: 'bottom'
                 halign: 'left'
                 pos: (780, 414)
@@ -314,7 +318,7 @@ WindowManager:
                 font_size: 28
             Label:
                 id: starttype
-                text: 'Standing'
+                text: ''
                 valign: 'bottom'
                 halign: 'left'
                 pos: (780, 220)
@@ -335,7 +339,7 @@ WindowManager:
                 font_size: 28
             Label:
                 id: pitstop
-                text: '4x Tires'
+                text: ''
                 valign: 'bottom'
                 halign: 'left'
                 pos: (925, 168)
@@ -356,7 +360,7 @@ WindowManager:
                 font_size: 28
             Label:
                 id: tracklimits
-                text: '5'
+                text: ''
                 valign: 'bottom'
                 halign: 'left'
                 pos: (945, 116)
@@ -377,7 +381,7 @@ WindowManager:
                 font_size: 28
             Label:
                 id: sfcy
-                text: 'Random'
+                text: ''
                 valign: 'bottom'
                 halign: 'left'
                 pos: (1090, 64)
@@ -417,7 +421,7 @@ WindowManager:
                 font_size: 22
                 background_normal: ''
                 background_color: '#c83737ff'
-                on_release: print('DLC CHECK')
+                on_release: root.dlc_button()
             Button:
                 text: 'GENERATE'
                 size_hint: (.15, .13)
@@ -436,7 +440,7 @@ WindowManager:
                 font_size: 22
                 background_normal: ''
                 background_color: '#c83737ff'
-                on_release: print('ABOUT')
+                on_release: root.about_button()
         RelativeLayout:
             size_hint: (.005, .95)
             pos: (0, 0)
@@ -446,4 +450,331 @@ WindowManager:
                 Rectangle:
                     pos: (574,16)
                     size: self.size
-        
+
+<DlcScreen>
+    name: 'dlc'
+
+    FloatLayout:
+        #Image:
+            #id: dlcbg
+            #source: 'datafiles/images/dlcbck.png'
+            #pos:(0,0)
+        Label:
+            text: 'MARK EVERY DLC THAT YOU HAVE'
+            valign: 'bottom'
+            halign: 'center'
+            pos:(0, 650)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            outline_color: (0.78, 0.22, 0.22, 1)
+            outline_width: 3
+            font_size: 35
+        Label:
+            text: '(need to do this only once)'
+            valign: 'bottom'
+            halign: 'center'
+            pos:(0, 620)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            outline_color: (0.78, 0.22, 0.22, 1)
+            outline_width: 1
+            font_size: 26
+        CheckBox:
+            id: dlc1
+            pos: (20, 570)
+            size_hint: (None, None)
+            size: (30, 25)
+            active: False
+            background_checkbox_normal: "datafiles/images/check_empty.png"
+            background_checkbox_down: "datafiles/images/check_marked.png"
+        Label:
+            text: 'Historical Track Pack pt1'
+            valign: 'bottom'
+            halign: 'left'
+            pos:(60, 570)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        CheckBox:
+            id: dlc2
+            pos: (480, 570)
+            size_hint: (None, None)
+            size: (30, 25)
+            active: False
+            background_checkbox_normal: "datafiles/images/check_empty.png"
+            background_checkbox_down: "datafiles/images/check_marked.png"
+        Label:
+            text: 'Super Cars pt1'
+            valign: 'bottom'
+            halign: 'left'
+            pos:(520, 570)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        CheckBox:
+            id: dlc3
+            pos: (900, 570)
+            size_hint: (None, None)
+            size: (30, 25)
+            active: False
+            background_checkbox_normal: "datafiles/images/check_empty.png"
+            background_checkbox_down: "datafiles/images/check_marked.png"
+        Label:
+            text: "Racin'USA pt1"
+            valign: 'bottom'
+            halign: 'left'
+            pos:(940, 570)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        CheckBox:
+            id: dlc4
+            pos: (20, 530)
+            size_hint: (None, None)
+            size: (30, 25)
+            active: False
+            background_checkbox_normal: "datafiles/images/check_empty.png"
+            background_checkbox_down: "datafiles/images/check_marked.png"
+        Label:
+            text: "Racin'USA pt2"
+            valign: 'bottom'
+            halign: 'left'
+            pos:(60, 530)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        CheckBox:
+            id: dlc5
+            pos: (480, 530)
+            size_hint: (None, None)
+            size: (30, 25)
+            active: False
+            background_checkbox_normal: "datafiles/images/check_empty.png"
+            background_checkbox_down: "datafiles/images/check_marked.png"
+        Label:
+            text: "Racin'USA pt3"
+            valign: 'bottom'
+            halign: 'left'
+            pos:(520, 530)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        CheckBox:
+            id: dlc6
+            pos: (900, 530)
+            size_hint: (None, None)
+            size: (30, 25)
+            active: False
+            background_checkbox_normal: "datafiles/images/check_empty.png"
+            background_checkbox_down: "datafiles/images/check_marked.png"
+        Label:
+            text: "Monza Pack"
+            valign: 'bottom'
+            halign: 'left'
+            pos:(940, 530)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        CheckBox:
+            id: dlc7
+            pos: (20, 490)
+            size_hint: (None, None)
+            size: (30, 25)
+            active: False
+            background_checkbox_normal: "datafiles/images/check_empty.png"
+            background_checkbox_down: "datafiles/images/check_marked.png"
+        Label:
+            text: "Spa-Franchorchamps Pack"
+            valign: 'bottom'
+            halign: 'left'
+            pos:(60, 490)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        CheckBox:
+            id: dlc8
+            pos: (480, 490)
+            size_hint: (None, None)
+            size: (30, 25)
+            active: False
+            background_checkbox_normal: "datafiles/images/check_empty.png"
+            background_checkbox_down: "datafiles/images/check_marked.png"
+        Label:
+            text: "Nurburgring Pack"
+            valign: 'bottom'
+            halign: 'left'
+            pos:(520, 490)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        CheckBox:
+            id: dlc9
+            pos: (900, 490)
+            size_hint: (None, None)
+            size: (30, 25)
+            active: False
+            background_checkbox_normal: "datafiles/images/check_empty.png"
+            background_checkbox_down: "datafiles/images/check_marked.png"
+        Label:
+            text: "Silverstone Pack"
+            valign: 'bottom'
+            halign: 'left'
+            pos:(940, 490)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        CheckBox:
+            id: dlc10
+            pos: (20, 450)
+            size_hint: (None, None)
+            size: (30, 25)
+            active: False
+            background_checkbox_normal: "datafiles/images/check_empty.png"
+            background_checkbox_down: "datafiles/images/check_marked.png"
+        Label:
+            text: "Hockenheimring Pack"
+            valign: 'bottom'
+            halign: 'left'
+            pos:(60, 450)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        CheckBox:
+            id: dlc11
+            pos: (480, 450)
+            size_hint: (None, None)
+            size: (30, 25)
+            active: False
+            background_checkbox_normal: "datafiles/images/check_empty.png"
+            background_checkbox_down: "datafiles/images/check_marked.png"
+        Label:
+            text: "Barcelona-Catalunya"
+            valign: 'bottom'
+            halign: 'left'
+            pos:(520, 450)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        CheckBox:
+            id: dlc12
+            pos: (900, 450)
+            size_hint: (None, None)
+            size: (30, 25)
+            active: False
+            background_checkbox_normal: "datafiles/images/check_empty.png"
+            background_checkbox_down: "datafiles/images/check_marked.png"
+        Label:
+            text: "Historical Track Pack pt2"
+            valign: 'bottom'
+            halign: 'left'
+            pos:(940, 450)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        CheckBox:
+            id: dlc13
+            pos: (20, 410)
+            size_hint: (None, None)
+            size: (30, 25)
+            active: False
+            background_checkbox_normal: "datafiles/images/check_empty.png"
+            background_checkbox_down: "datafiles/images/check_marked.png"
+        Label:
+            text: "Formula Hitech"
+            valign: 'bottom'
+            halign: 'left'
+            pos:(60, 410)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        CheckBox:
+            id: dlc14
+            pos: (480, 410)
+            size_hint: (None, None)
+            size: (30, 25)
+            active: False
+            background_checkbox_normal: "datafiles/images/check_empty.png"
+            background_checkbox_down: "datafiles/images/check_marked.png"
+        Label:
+            text: "Adrenaline pack pt1"
+            valign: 'bottom'
+            halign: 'left'
+            pos:(520, 410)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        CheckBox:
+            id: dlc15
+            pos: (900, 410)
+            size_hint: (None, None)
+            size: (30, 25)
+            active: False
+            background_checkbox_normal: "datafiles/images/check_empty.png"
+            background_checkbox_down: "datafiles/images/check_marked.png"
+        Label:
+            text: "LeMans"
+            valign: 'bottom'
+            halign: 'left'
+            pos:(940, 410)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        CheckBox:
+            id: dlc16
+            pos: (20, 370)
+            size_hint: (None, None)
+            size: (30, 25)
+            active: False
+            background_checkbox_normal: "datafiles/images/check_empty.png"
+            background_checkbox_down: "datafiles/images/check_marked.png"
+        Label:
+            text: "Endurance pt1"
+            valign: 'bottom'
+            halign: 'left'
+            pos:(60, 370)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        RelativeLayout:
+            pos: (0,0)
+            Button:
+                text: 'CONFIRM'
+                size_hint: (.1, .1)
+                halign: 'center'
+                pos:(450, 50)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 24
+                background_normal: ''
+                background_color: '#c83737ff'
+                on_release: root.confirm_button()
+            Button:
+                text: 'CANCEL / EXIT'
+                size_hint: (.15, .1)
+                halign: 'center'
+                pos:(650, 50)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 24
+                background_normal: ''
+                background_color: '#c83737ff'
+                on_release: root.exit_button()
+
+<AboutScreen>
+    name: 'about'

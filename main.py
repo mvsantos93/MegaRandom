@@ -15,15 +15,6 @@ Config.set('input', 'mouse', 'mouse,disable_multitouch')
 
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.uix.floatlayout import FloatLayout
-from kivy.uix.relativelayout import RelativeLayout
-from kivy.uix.textinput import TextInput
-from kivy.uix.label import Label
-from kivy.properties import StringProperty as SP
-from kivy.uix.popup import Popup
-from kivy.uix.button import Button
-from kivy.uix.image import Image
-from kivy.uix.checkbox import CheckBox
 
 class MainScreen(Screen):
     def generate(self):
@@ -35,6 +26,12 @@ class MainScreen(Screen):
         car_class3 = 'datafiles/images/class_null.png'
         car_class4 = 'datafiles/images/class_null.png'
         car_class5 = 'datafiles/images/class_null.png'
+        short_distances = ["5 minutes", "10 minutes"]
+        medium_distances = ["15 minutes", "20 minutes", "25 minutes"]
+        long_distances = ["30 minutes", "35 minutes", "40 minutes", "45 minutes", "50 minutes"]
+        endurance_distances = ["01 hour", "01h20 minutes", "1h30 minutes", "02 hours", "2h20 minutes", "2h30 minutes", "03 hours"]
+        time_progression = ["Real Time", "2x", "5x", "10x", "15x", "20x", "25x", "30x", "40x", "50x", "60x"]
+
 
         if self.ids.singleclass.active == True: opponent_class = 'singleclass'
         elif self.ids.multiclass.active == True: opponent_class = 'multiclass'
@@ -59,9 +56,9 @@ class MainScreen(Screen):
         if opponent_class == 'multiclass':
             class_type = random.choice(['normal', 'normal', 'normal', 'kart', 'normal', 'normal', 'normal', 'rx', 'normal', 'normal'])
 
-            if class_type == 'normal': class_num = random.randint(1,5)
-            elif class_type == 'kart': class_num = random.randint(1,4)
-            elif class_type == 'rx': class_num = random.randint(1,3)
+            if class_type == 'normal': class_num = random.randint(2,5)
+            elif class_type == 'kart': class_num = random.randint(2,4)
+            elif class_type == 'rx': class_num = random.randint(2,3)
 
             car_class_count = 0
 
@@ -111,7 +108,55 @@ class MainScreen(Screen):
             elif class_num == 4:
                 self.ids.class5.source = db.null[0]
 
-        #poha
+        self.ids.trackname.text = self.track_check(class_type)
+
+        if race_length == 'short': self.ids.duration.text = f'{random.choice(short_distances)} + 1 lap'
+        if race_length == 'medium': self.ids.duration.text = f'{random.choice(medium_distances)} + 1 lap'
+        if race_length == 'long': self.ids.duration.text = f'{random.choice(long_distances)} + 1 lap'
+        if race_length == 'endurance': self.ids.duration.text = f'{random.choice(endurance_distances)} + 1 lap'
+
+        self.ids.starttime.text = f'{random.randint(0,23)}h - {random.choice(time_progression)} time progression'
+
+        weather_num = random.randint(1,4)
+        weather_count = 1
+        while weather_count <= weather_num:
+            if weather_count == 1:
+                self.ids.weather1.source = self.weather_check(weather)
+                weather_count += 1
+                self.ids.weather2.source = db.null[1]
+                self.ids.weather3.source = db.null[1]
+                self.ids.weather4.source = db.null[1]
+            elif weather_count == 2:
+                weather2 = self.weather_check(weather)
+                if weather2 == self.ids.weather1.source: pass
+                else: 
+                    self.ids.weather2.source = weather2
+                    weather_count += 1
+                    self.ids.weather3.source = db.null[1]
+                    self.ids.weather4.source = db.null[1]
+            elif weather_count == 3:
+                weather3 = self.weather_check(weather)
+                if weather3 == self.ids.weather2.source: pass
+                else:
+                    self.ids.weather3.source = weather3
+                    weather_count += 1
+                    self.ids.weather4.source = db.null[1]
+            elif weather_count == 4:
+                weather4 = self.weather_check(weather)
+                if weather4 == self.ids.weather3.source: pass
+                else:
+                    self.ids.weather4.source = weather4
+                    weather_count += 1
+
+        self.ids.starttype.text = random.choice(["Standing", "Rolling"])
+
+        self.ids.pitstop.text = random.choice(["No mandatory pitstop", "1x Tire", "2x Tires", "3x Tires", "4x Tires"])
+
+        self.ids.tracklimits.text = str(random.randint(3,10))
+
+        self.ids.sfcy.text = random.choice(["Random", "25% Race Distance", "50% Race Distance", "75% Race Distance", "OFF"])
+
+        self.ids.fcy.text = random.choice(["YES", "NO"])
 
     def class_check(self, class_type):
         json_file = open("datafiles/dlcs.json", 'r')
@@ -121,9 +166,8 @@ class MainScreen(Screen):
         random.shuffle(db.kart_classes)
         random.shuffle(db.rx_classes)
 
-        if dlc_file['Adrenaline pack pt1'] == False:
+        if dlc_file['Adrenaline pack pt1'] == False and class_type == 'rx':
             class_type = 'kart'
-
 
         if class_type == 'normal': choosen_class = random.choice(db.classes)
         elif class_type == 'kart': choosen_class = random.choice(db.kart_classes)
@@ -131,22 +175,90 @@ class MainScreen(Screen):
         
 
         if dlc_file["Endurance pt1"] == False:
-            if 'class45' in choosen_class: return self.class_check()
-            elif 'class53' in choosen_class: return self.class_check()
+            if 'class45' in choosen_class: return self.class_check(class_type)
+            elif 'class53' in choosen_class: return self.class_check(class_type)
         
         if dlc_file["Formula Hitech"] == False:
-            if 'class12' in choosen_class: return self.class_check()
-            elif 'class13' in choosen_class: return self.class_check()
+            if 'class12' in choosen_class: return self.class_check(class_type)
+            elif 'class13' in choosen_class: return self.class_check(class_type)
 
         if dlc_file["Racin'USA pt1"] == False:
-            if 'class11' in choosen_class: return self.class_check()
-            elif 'class48' in choosen_class: return self.class_check()
+            if 'class11' in choosen_class: return self.class_check(class_type)
+            elif 'class48' in choosen_class: return self.class_check(class_type)
 
         if dlc_file["Super Cars pt1"] == False:
-            if 'class52' in choosen_class: return self.class_check()
+            if 'class52' in choosen_class: return self.class_check(class_type)
 
+        json_file.close()
         return choosen_class
         
+    def track_check(self, class_type):
+        json_file = open("datafiles/dlcs.json", 'r')
+        dlc_file = json.load(json_file)
+
+        if dlc_file['Adrenaline pack pt1'] == False and class_type == 'rx':
+            class_type = 'kart'
+
+        if class_type == 'kart':
+            random.shuffle(db.kart_tracks)
+            return random.choice(db.kart_tracks)
+        elif class_type == 'rx':
+            random.shuffle(db.rx_tracks)
+            track = random.choice(db.rx_tracks)
+        else:
+            random.shuffle(db.tracks)
+            track = random.choice(db.tracks)
+
+        if dlc_file["LeMans"] == False:
+            if '24 Heures du Mans' in track or 'Le Mans Bugatti' in track: return self.track_check(class_type)
+        if dlc_file["Historical Track Pack pt2"] == False:
+            if 'Interlagos 1991' in track or 'Interlagos 1993' in track or 'Montreal 1991' in track: return self.track_check(class_type)
+        if dlc_file['Barcelona-Catalunya'] == False:
+            if 'Barcelona' in track: return self.track_check(class_type)
+        if dlc_file["Historical Track Pack pt1"] == False:
+            if 'Cascais 1988' in track or 'Jerez 1988' in track: return self.track_check(class_type)
+        if dlc_file["Racin'USA pt1"] == False:
+            if 'Daytona' in track or 'Long Beach' in track or 'Laguna' in track: return self.track_check(class_type)
+        if dlc_file["Racin'USA pt2"] == False:
+            if 'Cleveland' in track or 'Road America' in track or 'Watkins' in track: return self.track_check(class_type)
+        if dlc_file["Racin'USA pt3"] == False:
+            if 'Fontana' in track or 'Gateway' in track or 'Indianapolis' in track: return self.track_check(class_type)
+        if dlc_file["Monza Pack"] == False:
+            if 'Monza' in track: return self.track_check(class_type)
+        if dlc_file["Nurburgring Pack"] == False:
+            if 'Nurburgring' in track or 'Nordschleife' in track: return self.track_check(class_type)
+        if dlc_file["Spa-Franchorchamps Pack"] == False:
+            if 'Spa' in track: return self.track_check(class_type)
+        if dlc_file["Silverstone Pack"] == False:
+            if 'Silverstone' in track: return self.track_check(class_type)
+        if dlc_file["Hockenheimring Pack"] == False:
+            if 'Hockenheim' in track: return self.track_check(class_type)
+
+        return track
+    
+    def weather_check(self, rain):
+        if rain == 'raining':
+            random.shuffle(db.weathers)
+            return random.choice(db.weathers)
+        else:
+            random.shuffle(db.weathers)
+            weather = random.choice(db.weathers)
+            if '05' in weather or '06' in weather or '07' in weather or '08' in weather or '10' in weather or '12' in weather or '14' in weather: return self.weather_check(rain)
+            else: return weather
+
+    def dlc_button(self):
+        self.manager.current = 'dlc'
+
+    def about_button(self):
+        self.manager.current = 'about'
+
+class DlcScreen(Screen):
+    def confirm(self):
+        self.manager.current = 'main'
+    def exit(self): self.manager.current = 'main'
+
+class AboutScreen(Screen):
+    pass
 
 class WindowManager(ScreenManager):
     pass
