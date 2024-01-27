@@ -35,10 +35,10 @@ WindowManager:
     fcy: fcy
 
     FloatLayout:
-        #Image:
-            #id: bg
-            #source: 'datafiles/images/titlebck.png'
-            #pos:(0,0)
+        Image:
+            id: bg
+            source: 'datafiles/images/mainbck.png'
+            pos:(0,0)
         Label:
             text: 'SETUP'
             pos:(-350, 320)
@@ -402,7 +402,7 @@ WindowManager:
                 font_size: 28
             Label:
                 id: fcy
-                text: 'Yes'
+                text: ''
                 valign: 'bottom'
                 halign: 'left'
                 pos: (935, 12)
@@ -450,15 +450,13 @@ WindowManager:
                 Rectangle:
                     pos: (574,16)
                     size: self.size
-
 <DlcScreen>
     name: 'dlc'
-
     FloatLayout:
-        #Image:
-            #id: dlcbg
-            #source: 'datafiles/images/dlcbck.png'
-            #pos:(0,0)
+        Image:
+            id: dlcbg
+            source: 'datafiles/images/dlcbck.png'
+            pos:(0,0)
         Label:
             text: 'MARK EVERY DLC THAT YOU HAVE'
             valign: 'bottom'
@@ -764,7 +762,7 @@ WindowManager:
                 font_size: 24
                 background_normal: ''
                 background_color: '#c83737ff'
-                on_release: root.confirm_button()
+                on_release: root.confirm()
             Button:
                 text: 'CANCEL / EXIT'
                 size_hint: (.15, .1)
@@ -774,7 +772,133 @@ WindowManager:
                 font_size: 24
                 background_normal: ''
                 background_color: '#c83737ff'
-                on_release: root.exit_button()
+                on_release: root.exit()
 
 <AboutScreen>
     name: 'about'
+    FloatLayout:
+        Image:
+            id: bg
+            source: 'datafiles/images/aboutbck.png'
+            pos:(0,0)
+        Label:
+            text: 'Thank you very much for trying out this app!'
+            valign: 'bottom'
+            halign: 'left'
+            pos:(20, 650)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 28
+        Label:
+            text: 'Have you tried out my other mods? I have:'
+            valign: 'bottom'
+            halign: 'left'
+            pos:(20, 610)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 28
+        Label:
+            text: 'A Career Mode app for Automobilista 2'
+            valign: 'bottom'
+            halign: 'left'
+            pos:(20, 530)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 28
+        Button:
+            text: 'CHECK OUT'
+            size_hint: (.1, .06)
+            halign: 'center'
+            pos:(550, 524)
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 20
+            background_normal: ''
+            background_color: '#c83737ff'
+            on_release: root.career()
+        Label:
+            text: 'A Fantasy F1 2026 skinpack for AMS2'
+            valign: 'bottom'
+            halign: 'left'
+            pos:(20, 450)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 28
+        Button:
+            text: 'CHECK OUT'
+            size_hint: (.1, .06)
+            halign: 'center'
+            pos:(550, 444)
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 20
+            background_normal: ''
+            background_color: '#c83737ff'
+            on_release: root.skin()
+        Label:
+            text: 'If you liked this Mega Random app or the others above,\nplease consider leaving a feedback for future\nimprovements and better experiences.'
+            valign: 'bottom'
+            halign: 'left'
+            pos:(20, 300)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 26
+        Label:
+            text: 'Again, thank you very much!\n                                                                    -   Marcos V. Santos'
+            valign: 'bottom'
+            halign: 'left'
+            pos:(20, 240)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 26
+        Button:
+            text: 'EXIT'
+            size_hint: (.1, .1)
+            halign: 'center'
+            pos:(635, 25)
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 32
+            background_normal: ''
+            background_color: '#c83737ff'
+            on_release: root.exit()
+        RelativeLayout:
+            size_hint: (.005, .80)
+            pos: (0, 0)
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: (700, 120)
+                    size: self.size
+        Label:
+            text: 'This app is free to use. But if your kind heart\nwants to support my work, you can buy me a\ncoffee through Ko-Fi.'
+            valign: 'bottom'
+            halign: 'left'
+            pos:(730, 600)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        Label:
+            text: 'All tips are highly appreciated and you will have\nmy eternal thank you. Send me a message if you\nwould like to use other currencies.'
+            valign: 'bottom'
+            halign: 'left'
+            pos:(730, 500)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        Button:
+            text: 'I WANT TO\nCONTRIBUTE'
+            size_hint: (.13, .1)
+            halign: 'center'
+            pos:(900, 400)
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+            background_normal: ''
+            background_color: '#c83737ff'
+            on_release: root.donate()

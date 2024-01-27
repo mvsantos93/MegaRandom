@@ -3,7 +3,7 @@ import sys
 if sys.__stdout__ is None or sys.__stderr__ is None:
     os.environ['KIVY_NO_CONSOLELOG'] = '1'
 
-import kivy, random, json, importlib, webbrowser, database as db
+import kivy, random, json, webbrowser, database as db
 kivy.require('2.1.0')
 
 from kivy.app import App
@@ -30,7 +30,7 @@ class MainScreen(Screen):
         medium_distances = ["15 minutes", "20 minutes", "25 minutes"]
         long_distances = ["30 minutes", "35 minutes", "40 minutes", "45 minutes", "50 minutes"]
         endurance_distances = ["01 hour", "01h20 minutes", "1h30 minutes", "02 hours", "2h20 minutes", "2h30 minutes", "03 hours"]
-        time_progression = ["Real Time", "2x", "5x", "10x", "15x", "20x", "25x", "30x", "40x", "50x", "60x"]
+        time_progression = ["Real", "2x", "5x", "10x", "15x", "20x", "25x", "30x", "40x", "50x", "60x"]
 
 
         if self.ids.singleclass.active == True: opponent_class = 'singleclass'
@@ -150,13 +150,17 @@ class MainScreen(Screen):
 
         self.ids.starttype.text = random.choice(["Standing", "Rolling"])
 
-        self.ids.pitstop.text = random.choice(["No mandatory pitstop", "1x Tire", "2x Tires", "3x Tires", "4x Tires"])
+        if race_length == 'short': self.ids.pitstop.text = "No mandatory pitstop"
+        else: self.ids.pitstop.text = random.choice(["No mandatory pitstop", "2x Tires", "4x Tires"])
 
-        self.ids.tracklimits.text = str(random.randint(3,10))
+        if race_length == 'short': self.ids.tracklimits.text = "3"
+        else: self.ids.tracklimits.text = str(random.randint(3,10))
 
-        self.ids.sfcy.text = random.choice(["Random", "25% Race Distance", "50% Race Distance", "75% Race Distance", "OFF"])
+        if race_length == 'short': self.ids.sfcy.text = "OFF"
+        else: self.ids.sfcy.text = random.choice(["Random", "25% Race", "50% Race", "75% Race", "OFF"])
 
-        self.ids.fcy.text = random.choice(["YES", "NO"])
+        if race_length == 'short': self.ids.fcy.text = "NO"
+        else: self.ids.fcy.text = random.choice(["YES", "NO"])
 
     def class_check(self, class_type):
         json_file = open("datafiles/dlcs.json", 'r')
@@ -254,11 +258,55 @@ class MainScreen(Screen):
 
 class DlcScreen(Screen):
     def confirm(self):
+        json_file = open("datafiles/dlcs.json", 'r+')
+        dlc_file = json.load(json_file)
+
+        if self.ids.dlc1.active == True: dlc_file["Historical Track Pack pt1"] = True
+        else: dlc_file["Historical Track Pack pt1"] = False
+        if self.ids.dlc2.active == True: dlc_file["Super Cars pt1"] = True
+        else: dlc_file["Super Cars pt1"] = False
+        if self.ids.dlc3.active == True: dlc_file["Racin'USA pt1"] = True
+        else: dlc_file["Racin'USA pt1"] = False
+        if self.ids.dlc4.active == True: dlc_file["Racin'USA pt2"] = True
+        else: dlc_file["Racin'USA pt2"] = False
+        if self.ids.dlc5.active == True: dlc_file["Racin'USA pt3"] = True
+        else: dlc_file["Racin'USA pt3"] = False
+        if self.ids.dlc6.active == True: dlc_file["Monza Pack"] = True
+        else: dlc_file["Monza Pack"] = False
+        if self.ids.dlc7.active == True: dlc_file["Spa-Franchorchamps Pack"] = True
+        else: dlc_file["Spa-Franchorchamps Pack"] = False
+        if self.ids.dlc8.active == True: dlc_file["Nurburgring Pack"] = True
+        else: dlc_file["Nurburgring Pack"] = False
+        if self.ids.dlc9.active == True: dlc_file["Silverstone Pack"] = True
+        else: dlc_file["Silverstone Pack"] = False
+        if self.ids.dlc10.active == True: dlc_file["Hockenheimring Pack"] = True
+        else: dlc_file["Hockenheimring Pack"] = False
+        if self.ids.dlc11.active == True: dlc_file["Barcelona-Catalunya"] = True
+        else: dlc_file["Barcelona-Catalunya"] = False
+        if self.ids.dlc12.active == True: dlc_file["Historical Track Pack pt2"] = True
+        else: dlc_file["Historical Track Pack pt2"] = False
+        if self.ids.dlc13.active == True: dlc_file["Formula Hitech"] = True
+        else: dlc_file["Formula Hitech"] = False
+        if self.ids.dlc14.active == True: dlc_file["Adrenaline pack pt1"] = True
+        else: dlc_file["Adrenaline pack pt1"] = False
+        if self.ids.dlc15.active == True: dlc_file["LeMans"] = True
+        else: dlc_file["LeMans"] = False
+        if self.ids.dlc16.active == True: dlc_file["Endurance pt1"] = True
+        else: dlc_file["Endurance pt1"] = False
+
+        json_file.seek(0)
+        json_file.truncate()
+        json.dump(dlc_file, json_file, indent=4)
+        json_file.close()
         self.manager.current = 'main'
+
     def exit(self): self.manager.current = 'main'
 
 class AboutScreen(Screen):
-    pass
+    def career(self): webbrowser.open("https://www.racedepartment.com/downloads/for-the-win-career-mode-for-ams-2.63157/")
+    def skin(self): webbrowser.open("https://www.racedepartment.com/downloads/fantasy-f1-2026-skinpack.65829/")
+    def donate(self): webbrowser.open("https://ko-fi.com/marcosvsantos93")
+    def exit(self): self.manager.current = 'main'
 
 class WindowManager(ScreenManager):
     pass
