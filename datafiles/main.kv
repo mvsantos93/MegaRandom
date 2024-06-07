@@ -11,6 +11,10 @@ WindowManager:
     name: 'main'
     singleclass: singleclass
     multiclass: multiclass
+    multiclass2: multiclass2
+    multiclass3: multiclass3
+    multiclass4: multiclass4
+    multiclass5: multiclass5
     shortlength: shortlength
     mediumlength: mediumlength
     longlength: longlength
@@ -70,20 +74,72 @@ WindowManager:
                 background_radio_normal: "datafiles/images/check_empty.png"
                 background_radio_down: "datafiles/images/check_marked.png"
             Label:
-                text: 'Multi-class'
-                pos:(-315, 235)
+                text: 'Multi (2 classes)'
+                pos:(-230, 235)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 24
+            CheckBox:
+                id: multiclass2
+                group: "opponent field"
+                pos: (280, 571)
+                size_hint: (None, None)
+                size: (30, 25)
+                background_radio_normal: "datafiles/images/check_empty.png"
+                background_radio_down: "datafiles/images/check_marked.png"
+            Label:
+                text: 'Multi (3 classes)'
+                pos:(-492, 195)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 24
+            CheckBox:
+                id: multiclass3
+                group: "opponent field"
+                pos: (20, 531)
+                size_hint: (None, None)
+                size: (30, 25)
+                background_radio_normal: "datafiles/images/check_empty.png"
+                background_radio_down: "datafiles/images/check_marked.png"
+            Label:
+                text: 'Multi (4 classes)'
+                pos:(-230, 195)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 24
+            CheckBox:
+                id: multiclass4
+                group: "opponent field"
+                pos: (280, 531)
+                size_hint: (None, None)
+                size: (30, 25)
+                background_radio_normal: "datafiles/images/check_empty.png"
+                background_radio_down: "datafiles/images/check_marked.png"
+            Label:
+                text: 'Multi (5 classes)'
+                pos:(-492, 155)
+                font_name: "datafiles/fonts/Ubuntu-M.ttf"
+                font_size: 24
+            CheckBox:
+                id: multiclass5
+                group: "opponent field"
+                pos: (20, 491)
+                size_hint: (None, None)
+                size: (30, 25)
+                background_radio_normal: "datafiles/images/check_empty.png"
+                background_radio_down: "datafiles/images/check_marked.png"
+            Label:
+                text: 'Multi (Random)'
+                pos:(-235, 155)
                 font_name: "datafiles/fonts/Ubuntu-M.ttf"
                 font_size: 24
             CheckBox:
                 id: multiclass
                 group: "opponent field"
-                pos: (220, 571)
+                pos: (280, 491)
                 size_hint: (None, None)
                 size: (30, 25)
                 background_radio_normal: "datafiles/images/check_empty.png"
                 background_radio_down: "datafiles/images/check_marked.png"
         RelativeLayout:
-            pos: (0, 0)
+            pos: (0, -90)
             Label:
                 text: 'RACE LENGTH'
                 pos:(-542, 170)
@@ -146,7 +202,7 @@ WindowManager:
                 background_radio_normal: "datafiles/images/check_empty.png"
                 background_radio_down: "datafiles/images/check_marked.png"
         RelativeLayout:
-            pos: (0, 0)
+            pos: (0, -100)
             Label:
                 text: 'RAINING CONDITIONS'
                 pos:(-495, 30)
@@ -183,7 +239,7 @@ WindowManager:
                 background_radio_normal: "datafiles/images/check_empty.png"
                 background_radio_down: "datafiles/images/check_marked.png"
         RelativeLayout:
-            pos: (0, 0)
+            pos: (0, -0)
             Label:
                 text: 'CLASSES:'
                 valign: 'bottom'
@@ -865,40 +921,3 @@ WindowManager:
             background_normal: ''
             background_color: '#c83737ff'
             on_release: root.exit()
-        RelativeLayout:
-            size_hint: (.005, .80)
-            pos: (0, 0)
-            canvas.before:
-                Color:
-                    rgba: 1, 1, 1, 1
-                Rectangle:
-                    pos: (700, 120)
-                    size: self.size
-        Label:
-            text: 'This app is free to use. But if your kind heart\nwants to support my work, you can buy me a\ncoffee through Ko-Fi.'
-            valign: 'bottom'
-            halign: 'left'
-            pos:(730, 600)
-            size_hint: (1, 1)
-            text_size: self.size
-            font_name: "datafiles/fonts/Ubuntu-M.ttf"
-            font_size: 24
-        Label:
-            text: 'All tips are highly appreciated and you will have\nmy eternal thank you. Send me a message if you\nwould like to use other currencies.'
-            valign: 'bottom'
-            halign: 'left'
-            pos:(730, 500)
-            size_hint: (1, 1)
-            text_size: self.size
-            font_name: "datafiles/fonts/Ubuntu-M.ttf"
-            font_size: 24
-        Button:
-            text: 'I WANT TO\nCONTRIBUTE'
-            size_hint: (.13, .1)
-            halign: 'center'
-            pos:(900, 400)
-            font_name: "datafiles/fonts/Ubuntu-M.ttf"
-            font_size: 24
-            background_normal: ''
-            background_color: '#c83737ff'
-            on_release: root.donate()

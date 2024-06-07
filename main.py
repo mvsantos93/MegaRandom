@@ -28,13 +28,13 @@ class MainScreen(Screen):
         car_class5 = 'datafiles/images/class_null.png'
         short_distances = ["5 minutes", "10 minutes"]
         medium_distances = ["15 minutes", "20 minutes", "25 minutes"]
-        long_distances = ["30 minutes", "35 minutes", "40 minutes", "45 minutes", "50 minutes"]
-        endurance_distances = ["01 hour", "01h20 minutes", "1h30 minutes", "02 hours", "2h20 minutes", "2h30 minutes", "03 hours"]
+        long_distances = ["30 minutes", "35 minutes", "40 minutes"]
+        endurance_distances = ["01 hour", "01h20 minutes", "1h30 minutes", "02 hours", "2h40 minutes", "03 hours"]
         time_progression = ["Real", "2x", "5x", "10x", "15x", "20x", "25x", "30x", "40x", "50x", "60x"]
 
 
         if self.ids.singleclass.active == True: opponent_class = 'singleclass'
-        elif self.ids.multiclass.active == True: opponent_class = 'multiclass'
+        else: opponent_class = 'multiclass'
 
         if self.ids.shortlength.active == True: race_length = 'short'
         elif self.ids.mediumlength.active == True: race_length = 'medium'
@@ -54,11 +54,22 @@ class MainScreen(Screen):
             self.ids.class5.source = db.null[0]
 
         if opponent_class == 'multiclass':
-            class_type = random.choice(['normal', 'normal', 'normal', 'kart', 'normal', 'normal', 'normal', 'rx', 'normal', 'normal'])
+            class_type = random.choice(['normal', 'normal', 'normal', 'normal', 'kart', 'normal', 'normal', 'normal', 'normal', 'rx', 'normal', 'normal', 'normal'])
 
-            if class_type == 'normal': class_num = random.randint(2,5)
-            elif class_type == 'kart': class_num = random.randint(2,4)
-            elif class_type == 'rx': class_num = random.randint(2,3)
+            if self.ids.multiclass2.active == True: class_num = 2
+            elif self.ids.multiclass3.active == True: class_num = 3
+            elif self.ids.multiclass4.active == True:
+                if class_type == 'rx':
+                    class_type = 'normal'
+                class_num = 4
+            elif self.ids.multiclass5.active == True:
+                if class_type == 'rx' or class_type == 'kart':
+                    class_type = 'normal'
+                class_num = 5
+            else:
+                if class_type == 'normal': class_num = random.randint(2,5)
+                elif class_type == 'kart': class_num = random.randint(2,4)
+                elif class_type == 'rx': class_num = random.randint(2,3)
 
             car_class_count = 0
 
