@@ -921,3 +921,40 @@ WindowManager:
             background_normal: ''
             background_color: '#c83737ff'
             on_release: root.exit()
+        RelativeLayout:
+            size_hint: (.005, .80)
+            pos: (0, 0)
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: (700, 120)
+                    size: self.size
+        Label:
+            text: 'This app is free to use. But if your kind heart\nwants to support my work, you can donate to\nmy Paypal account.'
+            valign: 'bottom'
+            halign: 'left'
+            pos:(730, 600)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        Label:
+            text: 'Any amount is highly appreciated and\nyou will have my eternal thank you!'
+            valign: 'bottom'
+            halign: 'left'
+            pos:(730, 500)
+            size_hint: (1, 1)
+            text_size: self.size
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+        Button:
+            text: 'I WANT TO\nCONTRIBUTE'
+            size_hint: (.13, .1)
+            halign: 'center'
+            pos:(900, 400)
+            font_name: "datafiles/fonts/Ubuntu-M.ttf"
+            font_size: 24
+            background_normal: ''
+            background_color: '#c83737ff'
+            on_release: root.donate()

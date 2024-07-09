@@ -14,7 +14,8 @@ classes = ['datafiles/images/class01.png', 'datafiles/images/class02.png', 'data
            'datafiles/images/class54.png', 'datafiles/images/class55.png', 'datafiles/images/class56.png', 'datafiles/images/class57.png', 'datafiles/images/class58.png', 'datafiles/images/class59.png', 
            'datafiles/images/class60.png', 'datafiles/images/class61.png', 'datafiles/images/class62.png', 'datafiles/images/class63.png', 'datafiles/images/class64.png', 'datafiles/images/class65.png', 
            'datafiles/images/class66.png', 'datafiles/images/class67.png', 'datafiles/images/class68.png', 'datafiles/images/class69.png', 'datafiles/images/class70.png', 'datafiles/images/class71.png', 
-           'datafiles/images/class72.png', 'datafiles/images/class73.png', 'datafiles/images/class74.png', 'datafiles/images/class75.png']
+           'datafiles/images/class72.png', 'datafiles/images/class73.png', 'datafiles/images/class74.png', 'datafiles/images/class75.png', 'datafiles/images/class76.png', 'datafiles/images/class77.png',
+           'datafiles/images/class00.png']
 
 kart_classes = ['datafiles/images/classk1.png', 'datafiles/images/classk2.png', 'datafiles/images/classk3.png', 'datafiles/images/classk4.png']
 

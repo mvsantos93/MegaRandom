@@ -314,9 +314,9 @@ class DlcScreen(Screen):
     def exit(self): self.manager.current = 'main'
 
 class AboutScreen(Screen):
-    def career(self): webbrowser.open("https://www.racedepartment.com/downloads/for-the-win-career-mode-for-ams-2.63157/")
-    def skin(self): webbrowser.open("https://www.racedepartment.com/downloads/fantasy-f1-2026-skinpack.65829/")
-    def donate(self): webbrowser.open("https://ko-fi.com/marcosvsantos93")
+    def career(self): webbrowser.open("https://www.overtake.gg/downloads/for-the-win-career-mode-for-ams-2.63157/")
+    def skin(self): webbrowser.open("https://www.overtake.gg/downloads/fantasy-f1-2026-skinpack.65829/")
+    def donate(self): webbrowser.open("https://www.paypal.com/donate/?hosted_button_id=TCR5PPH765UNN")
     def exit(self): self.manager.current = 'main'
 
 class WindowManager(ScreenManager):
@@ -326,7 +326,7 @@ kv = Builder.load_file('datafiles/main.kv')
 
 class MegaRandom_AMS2(App):
     def build(self):
-        #self.icon = 'datafiles/images/icon.jpeg'
+        self.icon = 'datafiles/images/icon.jpeg'
         return kv
 
 if __name__ == '__main__':
