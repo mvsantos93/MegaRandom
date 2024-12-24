@@ -8,7 +8,6 @@ var current_anim = "app_start"
 var next_anim
 
 func _ready():
-	sr_opponent_field()
 	$AnimationPlayer.play(current_anim)
 
 #SINGLE RACE BUTTONS AND ANIMATIONS
@@ -59,12 +58,13 @@ func _on_srgenerate_button_pressed():
 		$AnimationPlayer.play_backwards(current_anim)
 		$AnimationPlayer.queue("sr_generate")
 		current_anim = "sr_generate"
+		sr_confirm()
 	else:
 		$AnimationPlayer.queue("sr_generate")
 		current_anim = "sr_generate"
+		sr_confirm()
 
-func _on_sr_regen_button_pressed():
-	pass #gerar os resultados de novo
+func _on_sr_regen_button_pressed(): sr_confirm()
 
 func _on_sr_back_button_pressed(): _on_singlerace_button_pressed()
 
@@ -220,13 +220,16 @@ func _on_sr_sfcy_button_pressed():
 
 #SINGLE RACE LOGIC
 func sr_opponent_field():
-	var field_type = 'random'
+	var field_type = 'single_class'
 	if btns.sr_field_type_btn2.button_pressed == true: field_type = 'single_class'
 	elif btns.sr_field_type_btn3.button_pressed == true: field_type = 'multi2_class'
 	elif btns.sr_field_type_btn4.button_pressed == true: field_type = 'multi3_class'
 	elif btns.sr_field_type_btn5.button_pressed == true: field_type = 'multi4_class'
 	elif btns.sr_field_type_btn6.button_pressed == true: field_type = 'multi5_class'
-	else: field_type = 'random'
+	else:
+		#Não esquecer de mudar o nome da opção para 'random'
+		field_type = ['single_class', 'multi2_class', 'multi3_class', 'multi4_class', 'multi5_class'].pick_random()
+		
 
 	var classes_choosed = []
 	if btns.sr_field_type_check1.button_pressed == true: for x in database.caterhams: classes_choosed.append(x)
@@ -245,6 +248,7 @@ func sr_opponent_field():
 	if btns.sr_field_type_check14.button_pressed == true: for x in database.street: classes_choosed.append(x)
 	if btns.sr_field_type_check15.button_pressed == true: for x in database.touringhistoric: classes_choosed.append(x)
 	if btns.sr_field_type_check16.button_pressed == true: for x in database.touringmodern: classes_choosed.append(x)
+	classes_choosed.shuffle()
 	
 	return [field_type, classes_choosed]
 	
@@ -354,3 +358,34 @@ func sr_sfcy():
 	else: sfcy = 'random'
 	
 	return sfcy
+
+func sr_confirm():
+	randomize()
+	var opponent_field = sr_opponent_field()
+	var race_length = sr_race_length()
+	var period_progression = sr_time_period_progression()
+	var weather = sr_weather()
+	var start_type = sr_start_type()
+	var pitstop = sr_mandatory_pitstop()
+	var tire_fuel = sr_tire_fuel()
+	var fcy = sr_fcy()
+	var sfcy = sr_sfcy()
+	
+	var class_null = database.class_null
+	if opponent_field[0] == 'single_class':
+		var class_choosed = opponent_field[1].pick_random()
+		$single_race_screen/Control/srgen_panel/srgen_settings/class_img1.texture = load(class_choosed)
+		$single_race_screen/Control/srgen_panel/srgen_settings/class_img2.texture = load(class_null)
+		$single_race_screen/Control/srgen_panel/srgen_settings/class_img3.texture = load(class_null)
+		$single_race_screen/Control/srgen_panel/srgen_settings/class_img4.texture = load(class_null)
+		$single_race_screen/Control/srgen_panel/srgen_settings/class_img5.texture = load(class_null)
+	else:
+		var class_count = 0
+		if opponent_field == 'multi2_class':
+			var class1 = opponent_field[1].pick_random()
+			var class2 = opponent_field[1].pick_random()
+			if class2 == class1: pass
+		elif opponent_field == 'multi3_class':
+			var class1 = opponent_field[1].pick_random()
+	
+	#'single_class' 'multi2_class' 'multi3_class' 'multi4_class' 'multi5_class'

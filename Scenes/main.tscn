@@ -25,8 +25,6 @@
 [ext_resource type="Texture2D" uid="uid://s0x10sw8fx2" path="res://Images/Buttons/pb_hover.png" id="19_s27io"]
 [ext_resource type="Texture2D" uid="uid://duljjx000ygyv" path="res://Images/Buttons/pb_selected.png" id="20_c0k5n"]
 [ext_resource type="Texture2D" uid="uid://c1iing30blap5" path="res://Images/Buttons/square_check.png" id="20_q6ri4"]
-[ext_resource type="Texture2D" uid="uid://biw413xc8gyst" path="res://Images/Classes/class_null.jpg" id="25_6785i"]
-[ext_resource type="Texture2D" uid="uid://bhwohpkm00b6g" path="res://Images/Weathers/weather_null.jpg" id="26_kxdi6"]
 [ext_resource type="Script" path="res://Scripts/btns.gd" id="28_nixb4"]
 [ext_resource type="Script" path="res://Scripts/database.gd" id="29_dgvr6"]
 
@@ -60,6 +58,12 @@ corner_radius_bottom_left = 16
 [sub_resource type="ButtonGroup" id="ButtonGroup_0fdav"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_krbir"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ec6ui"]
+load_path = "res://.godot/imported/class_null.jpg-c0034ac06269e917b835d02f785d5c6a.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jg5nl"]
+load_path = "res://.godot/imported/weather_null.jpg-1e43640376a4a5efd162c437cda737fe.ctex"
 
 [sub_resource type="Animation" id="Animation_ar8et"]
 length = 0.001
@@ -9845,47 +9849,47 @@ uppercase = true
 
 [node name="class_img1" type="Sprite2D" parent="single_race_screen/Control/srgen_panel/srgen_settings"]
 position = Vector2(120, 120)
-texture = ExtResource("25_6785i")
+texture = SubResource("CompressedTexture2D_ec6ui")
 centered = false
 
 [node name="class_img2" type="Sprite2D" parent="single_race_screen/Control/srgen_panel/srgen_settings"]
 position = Vector2(280, 120)
-texture = ExtResource("25_6785i")
+texture = SubResource("CompressedTexture2D_ec6ui")
 centered = false
 
 [node name="class_img3" type="Sprite2D" parent="single_race_screen/Control/srgen_panel/srgen_settings"]
 position = Vector2(440, 120)
-texture = ExtResource("25_6785i")
+texture = SubResource("CompressedTexture2D_ec6ui")
 centered = false
 
 [node name="class_img4" type="Sprite2D" parent="single_race_screen/Control/srgen_panel/srgen_settings"]
 position = Vector2(600, 120)
-texture = ExtResource("25_6785i")
+texture = SubResource("CompressedTexture2D_ec6ui")
 centered = false
 
 [node name="class_img5" type="Sprite2D" parent="single_race_screen/Control/srgen_panel/srgen_settings"]
 position = Vector2(760, 120)
-texture = ExtResource("25_6785i")
+texture = SubResource("CompressedTexture2D_ec6ui")
 centered = false
 
 [node name="weather_img1" type="Sprite2D" parent="single_race_screen/Control/srgen_panel/srgen_settings"]
 position = Vector2(310, 260)
-texture = ExtResource("26_kxdi6")
+texture = SubResource("CompressedTexture2D_jg5nl")
 centered = false
 
 [node name="weather_img2" type="Sprite2D" parent="single_race_screen/Control/srgen_panel/srgen_settings"]
 position = Vector2(410, 260)
-texture = ExtResource("26_kxdi6")
+texture = SubResource("CompressedTexture2D_jg5nl")
 centered = false
 
 [node name="weather_img3" type="Sprite2D" parent="single_race_screen/Control/srgen_panel/srgen_settings"]
 position = Vector2(510, 260)
-texture = ExtResource("26_kxdi6")
+texture = SubResource("CompressedTexture2D_jg5nl")
 centered = false
 
 [node name="weather_img4" type="Sprite2D" parent="single_race_screen/Control/srgen_panel/srgen_settings"]
 position = Vector2(610, 260)
-texture = ExtResource("26_kxdi6")
+texture = SubResource("CompressedTexture2D_jg5nl")
 centered = false
 
 [node name="srgen_racelength" type="Label" parent="single_race_screen/Control/srgen_panel/srgen_settings"]
