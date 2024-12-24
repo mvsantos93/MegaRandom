@@ -3,7 +3,6 @@ extends Node
 @onready var btns = $Buttons
 @onready var database = $Database
 
-@warning_ignore("unused_variable")
 var current_anim = "app_start"
 var next_anim
 
@@ -362,30 +361,64 @@ func sr_sfcy():
 func sr_confirm():
 	randomize()
 	var opponent_field = sr_opponent_field()
-	var race_length = sr_race_length()
-	var period_progression = sr_time_period_progression()
-	var weather = sr_weather()
-	var start_type = sr_start_type()
-	var pitstop = sr_mandatory_pitstop()
-	var tire_fuel = sr_tire_fuel()
-	var fcy = sr_fcy()
-	var sfcy = sr_sfcy()
+	#var race_length = sr_race_length()
+	#var period_progression = sr_time_period_progression()
+	#var weather = sr_weather()
+	#var start_type = sr_start_type()
+	#var pitstop = sr_mandatory_pitstop()
+	#var tire_fuel = sr_tire_fuel()
+	#var fcy = sr_fcy()
+	#var sfcy = sr_sfcy()
 	
 	var class_null = database.class_null
 	if opponent_field[0] == 'single_class':
-		var class_choosed = opponent_field[1].pick_random()
+		var class_choosed = class_check(opponent_field)
 		$single_race_screen/Control/srgen_panel/srgen_settings/class_img1.texture = load(class_choosed)
 		$single_race_screen/Control/srgen_panel/srgen_settings/class_img2.texture = load(class_null)
 		$single_race_screen/Control/srgen_panel/srgen_settings/class_img3.texture = load(class_null)
 		$single_race_screen/Control/srgen_panel/srgen_settings/class_img4.texture = load(class_null)
 		$single_race_screen/Control/srgen_panel/srgen_settings/class_img5.texture = load(class_null)
 	else:
-		var class_count = 0
-		if opponent_field == 'multi2_class':
-			var class1 = opponent_field[1].pick_random()
-			var class2 = opponent_field[1].pick_random()
-			if class2 == class1: pass
-		elif opponent_field == 'multi3_class':
-			var class1 = opponent_field[1].pick_random()
+		var class_choosed = class_check(opponent_field)
+		$single_race_screen/Control/srgen_panel/srgen_settings/class_img1.texture = load(class_choosed[0])
+		$single_race_screen/Control/srgen_panel/srgen_settings/class_img2.texture = load(class_choosed[1])
+		$single_race_screen/Control/srgen_panel/srgen_settings/class_img3.texture = load(class_choosed[2])
+		$single_race_screen/Control/srgen_panel/srgen_settings/class_img4.texture = load(class_choosed[3])
+		$single_race_screen/Control/srgen_panel/srgen_settings/class_img5.texture = load(class_choosed[4])
 	
-	#'single_class' 'multi2_class' 'multi3_class' 'multi4_class' 'multi5_class'
+	
+	
+func class_check(class_to_check):
+	var class_type = ''
+	var class_count = 1
+	var class_max = 1
+	var classes_chosen = []
+	
+	#check how many classes participate
+	if class_to_check[0] == 'single_class': class_max = 1
+	elif class_to_check[0] == 'multi2_class': class_max = 2
+	elif class_to_check[0] == 'multi3_class': class_max = 3
+	elif class_to_check[0] == 'multi4_class': class_max = 4
+	else: class_max = 5
+	
+	#check if it's KART or RALLY
+	for x in class_to_check[1]:
+		if x in database.kart:
+			class_type = 'kart'
+			break
+		elif x in database.rally:
+			class_type = 'rally'
+			break
+		else: class_type = 'normal'
+	
+	while class_count <= class_max:
+		if class_type == 'kart':
+			var kart_class = class_to_check[1].pick_random()
+			if kart_class not in database.kart: continue
+			elif kart_class in classes_chosen: continue
+			else:
+				classes_chosen.append(kart_class)
+				class_count += 1
+				continue
+		else: class_type = 'kart'
+	return classes_chosen
