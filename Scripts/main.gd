@@ -247,6 +247,23 @@ func sr_opponent_field():
 	if btns.sr_field_type_check14.button_pressed == true: for x in database.street: classes_choosed.append(x)
 	if btns.sr_field_type_check15.button_pressed == true: for x in database.touringhistoric: classes_choosed.append(x)
 	if btns.sr_field_type_check16.button_pressed == true: for x in database.touringmodern: classes_choosed.append(x)
+	if not classes_choosed:
+		for x in database.caterhams: classes_choosed.append(x)
+		for x in database.fclassic: classes_choosed.append(x)
+		for x in database.fmodern: classes_choosed.append(x)
+		for x in database.fretro: classes_choosed.append(x)
+		for x in database.fv10: classes_choosed.append(x)
+		for x in database.fvintage: classes_choosed.append(x)
+		for x in database.gthistorical: classes_choosed.append(x)
+		for x in database.gtmodern: classes_choosed.append(x)
+		for x in database.kart: classes_choosed.append(x)
+		for x in database.prototypes: classes_choosed.append(x)
+		for x in database.rally: classes_choosed.append(x)
+		for x in database.stockhistorical: classes_choosed.append(x)
+		for x in database.stockmodern: classes_choosed.append(x)
+		for x in database.street: classes_choosed.append(x)
+		for x in database.touringhistoric: classes_choosed.append(x)
+		for x in database.touringmodern: classes_choosed.append(x)
 	classes_choosed.shuffle()
 	
 	return [field_type, classes_choosed]
@@ -369,33 +386,49 @@ func sr_confirm():
 	#var fcy = sr_fcy()
 	#var sfcy = sr_sfcy()
 	
-	
-	
+
 func class_check(opponent_field):
 	randomize()
 	var class_null = database.class_null
-	var class1 = $single_race_screen/Control/srgen_panel/srgen_settings/class_img1.texture
-	var class2 = $single_race_screen/Control/srgen_panel/srgen_settings/class_img2.texture
-	var class3 = $single_race_screen/Control/srgen_panel/srgen_settings/class_img3.texture
-	var class4 = $single_race_screen/Control/srgen_panel/srgen_settings/class_img4.texture
-	var class5 = $single_race_screen/Control/srgen_panel/srgen_settings/class_img5.texture
 	var field_type = opponent_field[0]
 	var classes = opponent_field[1]
-	var motorsport = ''
-	var class_max = 1
-	var class_count = 0
 	
-	#decide maximum number of classes
-	if field_type == 'multi2_class': class_max = 2
-	elif field_type == 'multi3_class': class_max = 3
-	elif field_type == 'multi4_class': class_max = 4
-	elif field_type == 'multi5_class': class_max = 5
-	else: class_max = 1
+	#decide how many classes are available to choose
+	var class_count = 0
+	for x in classes:
+		class_count +=1
+		if field_type == 'single_class': break
+		elif field_type == 'multi2_class' and class_count >= 2: break
+		elif field_type == 'multi3_class' and class_count >= 3: break
+		elif field_type == 'multi4_class' and class_count >= 4: break
+		elif field_type == 'multi5_class' and class_count >= 5: break
+		else: continue
 	
 	#decide NORMAL, KART or RALLY
-	var motorsport_num = randi_range(1,10)
-	if motorsport_num <= 8: motorsport = 'normal'
-	elif motorsport_num <= 9: motorsport = 'kart'
+	var motorsport = randi_range(1,10)
+	if motorsport <= 8: motorsport = 'normal'
 	else:
-		motorsport = 'rally'
-		class_max = 3
+		for x in classes:
+			if x in database.kart:
+				motorsport = 'kart'
+				break
+			elif x in database.rally:
+				motorsport = 'rally'
+				break
+			else: motorsport = 'normal'
+	
+	#Choose all the classes
+	var classes_choosed = [class_null, class_null, class_null, class_null, class_null]
+	while class_count > 0:
+		var current_class = classes.pick_random()
+		if current_class in classes_choosed: continue
+		else:
+			classes_choosed[class_count-1] = current_class
+			class_count -= 1
+	
+	#Apply the results
+	$single_race_screen/Control/srgen_panel/srgen_settings/class_img1.texture = load(classes_choosed[0])
+	$single_race_screen/Control/srgen_panel/srgen_settings/class_img2.texture = load(classes_choosed[1])
+	$single_race_screen/Control/srgen_panel/srgen_settings/class_img3.texture = load(classes_choosed[2])
+	$single_race_screen/Control/srgen_panel/srgen_settings/class_img4.texture = load(classes_choosed[3])
+	$single_race_screen/Control/srgen_panel/srgen_settings/class_img5.texture = load(classes_choosed[4])
