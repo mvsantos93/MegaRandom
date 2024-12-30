@@ -270,25 +270,32 @@ func sr_opponent_field():
 	
 func sr_race_length():
 	var race_length = 'random'
+	#Não esquecer de mudar os textos com as opções
 	if btns.sr_race_length_btn2.button_pressed == true: race_length = 'minimum'
 	elif btns.sr_race_length_btn3.button_pressed == true: race_length = 'short'
 	elif btns.sr_race_length_btn4.button_pressed == true: race_length = 'medium'
 	elif btns.sr_race_length_btn5.button_pressed == true: race_length = 'long'
-	elif btns.sr_race_length_btn6.button_pressed == true: race_length = 'endurance random'
+	elif btns.sr_race_length_btn6.button_pressed == true:
+		#não esquecer de mudar o texto para 'ENDURANCE RANDOM'
+		race_length = ['endurance short', 'endurance medium', 'endurance long'].pick_random()
 	elif btns.sr_race_length_btn7.button_pressed == true: race_length = 'endurance short'
 	elif btns.sr_race_length_btn8.button_pressed == true: race_length = 'endurance medium'
 	elif btns.sr_race_length_btn9.button_pressed == true: race_length = 'endurance long'
 	elif btns.sr_race_length_btn10.button_pressed == true: race_length = 'are you crazy'
-	else: race_length = 'random'
+	else:
+		#não esquecer de mudar o testo para RANDOM
+		race_length = ['minimum', 'short', 'medium', 'long', 'endurance short', 'endurance medium', 'endurance long', 'are you crazy'].pick_random()
 	
 	return race_length
 
 func sr_time_period_progression():
 	var time_period = 'random'
+	#Não esquecer de mudar o texto
 	if btns.sr_time_period_btn2.button_pressed == true: time_period = 'day'
 	elif btns.sr_time_period_btn3.button_pressed == true: time_period = 'night'
-	else: time_period = 'random'
+	else: time_period = ['day', 'night'].pick_random()
 	
+	#Não esquecer de mudar o texto
 	var time_progression = 'random'
 	if btns.sr_time_progression_btn2.button_pressed == true: time_progression = 'daylight only'
 	elif btns.sr_time_progression_btn3.button_pressed == true: time_progression = 'nighttime only'
@@ -298,7 +305,7 @@ func sr_time_period_progression():
 	elif btns.sr_time_progression_btn7.button_pressed == true: time_progression = '24h race'
 	elif btns.sr_time_progression_btn8.button_pressed == true: time_progression = '36h race'
 	elif btns.sr_time_progression_btn9.button_pressed == true: time_progression = '48h race'
-	else: time_progression = 'random'
+	else: time_progression = ['daylight only', 'nighttime only', '3h race', '6h race', '12h race', '24h race', '36h race', '48h race'].pick_random()
 	
 	return [time_period, time_progression]
 
@@ -377,15 +384,16 @@ func sr_sfcy():
 
 func sr_confirm():
 	class_check(sr_opponent_field())
-	#var race_length = sr_race_length()
-	#var period_progression = sr_time_period_progression()
+	var race_length = sr_race_length()
+	progression_check(sr_time_period_progression(), race_length)
 	#var weather = sr_weather()
 	#var start_type = sr_start_type()
 	#var pitstop = sr_mandatory_pitstop()
 	#var tire_fuel = sr_tire_fuel()
 	#var fcy = sr_fcy()
 	#var sfcy = sr_sfcy()
-	
+
+
 
 func class_check(opponent_field):
 	randomize()
@@ -432,3 +440,25 @@ func class_check(opponent_field):
 	$single_race_screen/Control/srgen_panel/srgen_settings/class_img3.texture = load(classes_choosed[2])
 	$single_race_screen/Control/srgen_panel/srgen_settings/class_img4.texture = load(classes_choosed[3])
 	$single_race_screen/Control/srgen_panel/srgen_settings/class_img5.texture = load(classes_choosed[4])
+
+func progression_check(time_period, race_length):
+	var race_length_text = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_racelength
+	if race_length == 'minimum': race_length_text.text = '-  5 minutes race length'
+	elif race_length == 'short': race_length_text.text = '-  ' + database.short_length.pick_random() + ' race length'
+	elif race_length == 'medium': race_length_text.text = '-  ' + database.medium_length.pick_random() + ' race length'
+	elif race_length == 'long': race_length_text.text = '-  ' + database.long_length.pick_random() + ' race length'
+	elif race_length == 'endurance short': race_length_text.text = '-  ' + database.short_enduro.pick_random() + ' race length'
+	elif race_length == 'endurance medium': race_length_text.text = '-  ' + database.medium_enduro.pick_random() + ' race length'
+	elif race_length == 'endurance long': race_length_text.text = '-  ' + database.long_enduro.pick_random() + ' race length'
+	elif race_length == 'are you crazy': race_length_text.text = '-  ' + database.crazy_length.pick_random() + ' race length'
+
+	var start_time_text = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_starttime
+	var time_progression_text = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_timeprogress
+	if time_period[1] == 'daylight only': time_period[0] = 'day'
+	elif time_period[1] == 'nighttime only': time_period[0] = 'night'
+	elif time_period[1] == '3h race': pass
+	elif time_period[1] == '6h race': pass
+	elif time_period[1] == '12h race': pass
+	elif time_period[1] == '24h race': pass
+	elif time_period[1] == '36h race': pass
+	elif time_period[1] == '48h race': pass

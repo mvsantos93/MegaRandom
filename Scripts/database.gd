@@ -22,3 +22,11 @@ var touringmodern = ["res://Images/Classes/class62.png", "res://Images/Classes/c
 var weather_null = "res://Images/Weathers/weather_null.jpg"
 var clean_weathers = ["res://Images/Weathers/weather00.png", "res://Images/Weathers/weather01.png", "res://Images/Weathers/weather02.png", "res://Images/Weathers/weather03.png", "res://Images/Weathers/weather04.png", "res://Images/Weathers/weather09.png", "res://Images/Weathers/weather11.png", "res://Images/Weathers/weather13.png", "res://Images/Weathers/weather14.png"]
 var rain_weathers = ["res://Images/Weathers/weather05.png", "res://Images/Weathers/weather06.png", "res://Images/Weathers/weather07.png", "res://Images/Weathers/weather08.png", "res://Images/Weathers/weather10.png", "res://Images/Weathers/weather12.png", "res://Images/Weathers/weather14.png"]
+
+var short_length = ['5 minutes', '10 minutes', '15 minutes', '20 minutes']
+var medium_length = ['25 minutes', '30 minutes', '35 minutes', '40 minutes']
+var long_length = ['45 minutes', '50 minutes', '55 minutes', '1 hour']
+var short_enduro = ['1h15', '1h20', '1h25', '1h30', '1h35']
+var medium_enduro = ['1h40', '1h45', '1h50', '1h55', '2 hours', '2h10', '2h15', '2h20', '2h25', '2h30', '2h35', '2h40']
+var long_enduro = ['3 hours', '3h15', '3h30', '3h45', '4 hours', '4h15', '4h30', '4h45', '5 hours', '5h20']
+var crazy_length = ['5h25', '5h45', '6 hours', '6h15', '6h30', '6h45', '7 hours']
