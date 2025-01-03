@@ -443,22 +443,120 @@ func class_check(opponent_field):
 
 func progression_check(time_period, race_length):
 	var race_length_text = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_racelength
+	var short = database.short_length.pick_random()
+	var medium = database.short_length.pick_random()
+	var long = database.short_length.pick_random()
+	var endu_short = database.short_length.pick_random()
+	var endu_medium = database.short_length.pick_random()
+	var endu_long = database.short_length.pick_random()
+	var crazy = database.short_length.pick_random()
 	if race_length == 'minimum': race_length_text.text = '-  5 minutes race length'
-	elif race_length == 'short': race_length_text.text = '-  ' + database.short_length.pick_random() + ' race length'
-	elif race_length == 'medium': race_length_text.text = '-  ' + database.medium_length.pick_random() + ' race length'
-	elif race_length == 'long': race_length_text.text = '-  ' + database.long_length.pick_random() + ' race length'
-	elif race_length == 'endurance short': race_length_text.text = '-  ' + database.short_enduro.pick_random() + ' race length'
-	elif race_length == 'endurance medium': race_length_text.text = '-  ' + database.medium_enduro.pick_random() + ' race length'
-	elif race_length == 'endurance long': race_length_text.text = '-  ' + database.long_enduro.pick_random() + ' race length'
-	elif race_length == 'are you crazy': race_length_text.text = '-  ' + database.crazy_length.pick_random() + ' race length'
+	elif race_length == 'short': race_length_text.text = '-  ' + short + ' race length'
+	elif race_length == 'medium': race_length_text.text = '-  ' + medium + ' race length'
+	elif race_length == 'long': race_length_text.text = '-  ' + long + ' race length'
+	elif race_length == 'endurance short': race_length_text.text = '-  ' + endu_short + ' race length'
+	elif race_length == 'endurance medium': race_length_text.text = '-  ' + endu_medium + ' race length'
+	elif race_length == 'endurance long': race_length_text.text = '-  ' + endu_long + ' race length'
+	elif race_length == 'are you crazy': race_length_text.text = '-  ' + crazy + ' race length'
 
 	var start_time_text = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_starttime
 	var time_progression_text = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_timeprogress
-	if time_period[1] == 'daylight only': time_period[0] = 'day'
-	elif time_period[1] == 'nighttime only': time_period[0] = 'night'
-	elif time_period[1] == '3h race': pass
-	elif time_period[1] == '6h race': pass
-	elif time_period[1] == '12h race': pass
-	elif time_period[1] == '24h race': pass
-	elif time_period[1] == '36h race': pass
-	elif time_period[1] == '48h race': pass
+	if time_period[1] == 'daylight only':
+		time_period[0] = 'day'
+		time_progression_text.text = '-  OFF time progression'
+	elif time_period[1] == 'nighttime only':
+		time_period[0] = 'night'
+		time_progression_text.text = '-  OFF time progression'
+	elif time_period[1] == '3h race':
+		if race_length == 'minimum': time_progression_text.text = '-  40x time progression'
+		elif race_length == 'short':
+			if short == database.short[0]: time_progression_text.text = '-  20x time progression'
+			else: time_progression_text.text = '-  10x time progression'
+		elif race_length == 'medium' or race_length == 'long': time_progression_text.text = '-  5x time progression'
+		elif race_length == 'endurance short' or race_length == 'endurance medium': time_progression_text.text = '-  1x time progression'
+		else: time_progression_text.text = '-  Real time progression'
+	elif time_period[1] == '6h race':
+		if race_length == 'minimum': time_progression_text.text = '-  60x time progression'
+		elif race_length == 'short':
+			if short == database.short[0]: time_progression_text.text = '-  40x time progression'
+			elif short == database.short[1]: time_progression_text.text = '-  25x time progression'
+			else: time_progression_text.text = '-  20x time progression'
+		elif race_length == 'medium':
+			if medium == database.medium_length[0]: time_progression_text.text = '-  15x time progression'
+			else: time_progression_text.text = '-  10x time progression'
+		elif race_length == 'long':
+			if long == database.long_length[0] or long == database.long_length[1]: time_progression_text.text = '-  10x time progression'
+			else: time_progression_text.text = '-  5x time progression'
+		elif race_length == 'endu_short' or race_length == 'endu_medium': time_progression_text.text = '-  5x time progression'
+		elif race_length == 'endu_long': time_progression_text.text = '-  2x time progression'
+		else: time_progression_text.text = '-  Real time progression'
+	elif time_period[1] == '12h race':
+		if race_length == 'minimum': time_progression_text.text = '-  60x time progression'
+		elif race_length == 'short':
+			if short == database.short_length[0]: time_progression_text.text = '-  60x time progression'
+			else: time_progression_text.text = '-  40x time progression'
+		elif race_length == 'medium':
+			if medium == database.medium_length[0]: time_progression_text.text = '-  30x time progression'
+			elif medium == database.medium_length[1]: time_progression_text.text = '-  25x time progression'
+			else: time_progression_text.text = '-  20x time progression'
+		elif race_length == 'long': time_progression_text.text = '-  15x time progression'
+		elif race_length == 'endu_short': time_progression_text.text = '-  10x time progression'
+		elif race_length == 'endu_medium': time_progression_text.text = '-  5x time progression'
+		else: time_progression_text.text = '-  2x time progression'
+	elif time_period[1] == '24h race':
+		if race_length == 'minimum' or race_length == 'short': time_progression_text.text = '-  60x time progression'
+		elif race_length == 'medium':
+			if medium == database.medium[0]: time_progression_text.text = '-  60x time progression'
+			elif medium == database.medium[1]: time_progression_text.text = '-  50x time progression'
+			else: time_progression_text.text = '-  40x time progression'
+		elif race_length == 'long':
+			if long == database.long[0] or long == database.long[1]: time_progression_text.text = '-  30x time progression'
+			else: time_progression_text.text = '-  25x time progression'
+		elif race_length == 'endu_short':
+			if endu_short == database.short_enduro[0] or endu_short == database.short_enduro[1]: time_progression_text.text = '-  20x time progression'
+			else: time_progression_text.text = '-  15x time progression'
+		elif race_length == 'endu_medium':
+			if endu_medium == database.medium_enduro[0] or medium == database.medium_enduro[1] or medium == database.medium_enduro[2] or medium == database.medium_enduro[3]:
+				time_progression_text.text = '-  15x time progression'
+			else: time_progression_text.text = '-  10x time progression'
+		elif race_length == 'endu_long':
+			if endu_long == database.long_enduro[0]: time_progression_text.text = '-  10x time progression'
+			else: time_progression_text.text = '-  5x time progression'
+		else: time_progression_text.text = '-  2x time progression'
+	elif time_period[1] == '36h race':
+		if race_length == 'minimum' or race_length == 'short' or race_length == 'medium':
+			time_progression_text.text = '-  60x time progression'
+		elif race_length == 'long':
+			if long == database.long_length[0] or long == database.long_length[1]: time_progression_text.text = '-  50x time progression'
+			else: time_progression_text.text = '-  40x time progression'
+		elif race_length == 'endu_short':
+			if endu_short == database.short_enduro[0] or endu_short == database.short_enduro[1] or endu_short == database.short_enduro[2]:
+				time_progression_text.text = '-  30x time progression'
+			else: time_progression_text.text = '-  20x time progression'
+		elif race_length == 'endu_medium':
+			if endu_medium == database.medium_enduro[11]: time_progression_text.text = '-  15x time progression'
+			else: time_progression_text.text = '-  20x time progression'
+		elif race_length == 'endu_long':
+			if endu_long == database.long_enduro[8]: time_progression_text.text = '-  5x time progression'
+			else: time_progression_text.text = '-  10x time progression'
+		else: time_progression_text.text = '-  5x time progression'
+	elif time_period[1] == '48h race':
+		if race_length == 'minimum' or race_length == 'short' or race_length == 'medium': time_progression_text.text = '-  60x time progression'
+		elif race_length == 'long':
+			if long == database.long_length[3]: time_progression_text.text = '-  50x time progression'
+		elif race_length == 'endu_short':
+			if endu_short == database.short_enduro[0] or endu_short == database.short_enduro[1]: time_progression_text.text = '-  40x time progression'
+			else: time_progression_text.text = '-  30x time progression'
+		elif race_length == 'endu_medium':
+			if endu_medium == database.medium_enduro[1]: time_progression_text.text = '-  30x time progression'
+			else: time_progression_text.text = '-  20x time progression'
+		elif race_length == 'endu_long':
+			if endu_long == database.long_enduro[0]: time_progression_text.text = '-  15x time progression'
+			else: time_progression_text.text = '-  10x time progression'
+		elif crazy == database.crazy_length[6]: time_progression_text.text = '-  5x time progression'
+		else: time_progression_text.text = '-  10x time progression'
+
+	var daytime = ['08h00', '09h00', '10h00', '11h00', '12h00', '13h00', '14h00', '15h00', '16h00', '17h00'].pick_random()
+	var nighttime = ['20h00', '21h00', '22h00', '23h00', '00h00', '01h00', '02h00', '03h00', '04h00', '05h00'].pick_random()
+	if time_period[0] == 'day': start_time_text.text = '-  Race starts at ' + daytime
+	else: start_time_text.text = '-  Race starts at ' + nighttime

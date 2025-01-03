@@ -8152,7 +8152,7 @@ offset_right = 156.0
 offset_bottom = 31.0
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 27
-text = "RANDOM (5x, 10x, 25x, etc..)"
+text = "RANDOM (of the options below)"
 vertical_alignment = 1
 uppercase = true
 
@@ -9911,7 +9911,7 @@ offset_bottom = 497.0
 theme_override_colors/font_outline_color = Color(0.784314, 0.215686, 0.215686, 1)
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 32
-text = "-  Race starts at 21:00 (9pm)"
+text = "-  Race starts at 21:00"
 clip_text = true
 
 [node name="srgen_timeprogress" type="Label" parent="single_race_screen/Control/srgen_panel/srgen_settings"]

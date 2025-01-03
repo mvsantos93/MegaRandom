@@ -23,7 +23,7 @@ var weather_null = "res://Images/Weathers/weather_null.jpg"
 var clean_weathers = ["res://Images/Weathers/weather00.png", "res://Images/Weathers/weather01.png", "res://Images/Weathers/weather02.png", "res://Images/Weathers/weather03.png", "res://Images/Weathers/weather04.png", "res://Images/Weathers/weather09.png", "res://Images/Weathers/weather11.png", "res://Images/Weathers/weather13.png", "res://Images/Weathers/weather14.png"]
 var rain_weathers = ["res://Images/Weathers/weather05.png", "res://Images/Weathers/weather06.png", "res://Images/Weathers/weather07.png", "res://Images/Weathers/weather08.png", "res://Images/Weathers/weather10.png", "res://Images/Weathers/weather12.png", "res://Images/Weathers/weather14.png"]
 
-var short_length = ['5 minutes', '10 minutes', '15 minutes', '20 minutes']
+var short_length = ['10 minutes', '15 minutes', '20 minutes']
 var medium_length = ['25 minutes', '30 minutes', '35 minutes', '40 minutes']
 var long_length = ['45 minutes', '50 minutes', '55 minutes', '1 hour']
 var short_enduro = ['1h15', '1h20', '1h25', '1h30', '1h35']
