@@ -75,7 +75,7 @@ func _on_mod_1_button_pressed(): OS.shell_open("https://www.overtake.gg/download
 
 func _on_mod_2_button_pressed(): OS.shell_open("https://www.overtake.gg/downloads/fantasy-f1-2026-skinpack.65829/")
 
-func _on_mod_3_button_pressed(): OS.shell_open("https://www.paypal.com/donate/?hosted_button_id=TCR5PPH765UNN")
+func _on_mod_3_button_pressed(): OS.shell_open("https://www.overtake.gg/downloads/f1-mega-skinpack-20-new-brands.74612/")
 
 func _on_donate_button_pressed(): OS.shell_open("https://www.paypal.com/donate/?hosted_button_id=TCR5PPH765UNN")
 
@@ -86,6 +86,73 @@ func _on_sr_opponentfield_button_pressed():
 		$AnimationPlayer.play_backwards(current_anim)
 		current_anim = "singlerace_start"
 		$single_race_screen/Control/singlerace_panel1/change_button/change_label.text = "CHANGE"
+		var option_text = $single_race_screen/Control/singlerace_panel1/fieldtypeoption_label
+		var options = sr_opponent_field()
+		if $single_race_screen/Control/singlerace_panel1/fieldtype_settings/ftsettings_label1/ftsettings1_radio1.button_pressed == true:
+			option_text.text = 'RANDOM CLASSES'
+		elif options[0] == 'single_class': option_text.text = 'SINGLE CLASS'
+		elif options[0] == 'multi2_class': option_text.text = '2x MULTICLASS'
+		elif options[0] == 'multi3_class': option_text.text = '3x MULTICLASS'
+		elif options[0] == 'multi4_class': option_text.text = '4x MULTICLASS'
+		elif options[0] == 'multi5_class': option_text.text = '5x MULTICLASS'
+		
+		var classes_choosed = []
+		var option2_text = ''
+		if btns.sr_field_type_check1.button_pressed == true:
+			option2_text = option_text.text + '  -  CATERHAMS ONLY'
+			classes_choosed.append('caterhams')
+		if btns.sr_field_type_check2.button_pressed == true:
+			option2_text = option_text.text + '  -  F.CLASSICS ONLY'
+			classes_choosed.append('fclassics')
+		if btns.sr_field_type_check3.button_pressed == true:
+			option2_text = option_text.text + '  -  F.MODERN ONLY'
+			classes_choosed.append('fmodern')
+		if btns.sr_field_type_check4.button_pressed == true:
+			option2_text = option_text.text + '  -  F.RETROS ONLY'
+			classes_choosed.append('fretro')
+		if btns.sr_field_type_check5.button_pressed == true:
+			option2_text = option_text.text + '  -  F.V10s ONLY'
+			classes_choosed.append('fv10')
+		if btns.sr_field_type_check6.button_pressed == true:
+			option2_text = option_text.text + '  -  F.VINTAGES ONLY'
+			classes_choosed.append('fvintage')
+		if btns.sr_field_type_check7.button_pressed == true:
+			option2_text = option_text.text + '  -  HISTORICAL GT ONLY'
+			classes_choosed.append('hgt')
+		if btns.sr_field_type_check8.button_pressed == true:
+			option2_text = option_text.text + '  -  MODERN GT ONLY'
+			classes_choosed.append('mgt')
+		if btns.sr_field_type_check9.button_pressed == true:
+			option2_text = option_text.text + '  -  KARTS ONLY'
+			classes_choosed.append('karts')
+		if btns.sr_field_type_check10.button_pressed == true:
+			option2_text = option_text.text + '  -  PROTOTYPES ONLY'
+			classes_choosed.append('prototypes')
+		if btns.sr_field_type_check11.button_pressed == true:
+			option2_text = option_text.text + '  -  RALLY ONLY'
+			classes_choosed.append('rally')
+		if btns.sr_field_type_check12.button_pressed == true:
+			option2_text = option_text.text + '  -  HISTORICAL STOCK CARS ONLY'
+			classes_choosed.append('hstock')
+		if btns.sr_field_type_check13.button_pressed == true:
+			option2_text = option_text.text + '  -  MODERN STOCK CARS ONLY'
+			classes_choosed.append('mstock')
+		if btns.sr_field_type_check14.button_pressed == true:
+			option2_text = option_text.text + '  -  STREET-SUPER-HYPER CARS ONLY'
+			classes_choosed.append('ssh')
+		if btns.sr_field_type_check15.button_pressed == true:
+			option2_text = option_text.text + '  -  HISTORICAL TOURING ONLY'
+			classes_choosed.append('htouring')
+		if btns.sr_field_type_check16.button_pressed == true:
+			option2_text = option_text.text + '  -  MODERN TOURING ONLY'
+			classes_choosed.append('mtouring')
+		
+		var classes_choosed_count = 0
+		for x in classes_choosed:
+			classes_choosed_count +=1
+		if classes_choosed_count == 16 or classes_choosed_count <=0: option_text.text += '  -  ALL OPTIONS'
+		elif classes_choosed_count >= 2: option_text.text += '  -  MULTIPLE OPTIONS'
+		else: option_text.text = option2_text
 	elif current_anim != "singlerace_start":
 		$AnimationPlayer.play_backwards(current_anim)
 		$AnimationPlayer.queue("sr_opponent_field")
@@ -101,6 +168,20 @@ func _on_sr_racelength_button_pressed():
 		$AnimationPlayer.play_backwards(current_anim)
 		current_anim = "singlerace_start"
 		$single_race_screen/Control/singlerace_panel2/change_button/change_label.text = "CHANGE"
+		var options_text = $single_race_screen/Control/singlerace_panel2/racelengthoption_label
+		var options = sr_race_length()
+		if $single_race_screen/Control/singlerace_panel2/racelength_settings/rlsettings_label1/rlsettings1_radio1.button_pressed == true:
+			options_text.text = 'RANDOM DURATION'
+		elif options == 'minimum': options_text.text = 'MINIMUM (5 MINUTES)'
+		elif options == 'short': options_text.text = 'SHORT (10 TO 20 MINUTES)'
+		elif options == 'medium': options_text.text = 'MEDIUM (25 TO 40 MINUTES)'
+		elif options == 'long': options_text.text = 'LONG (45 MINUTES TO 1H)'
+		elif $single_race_screen/Control/singlerace_panel2/racelength_settings/rlsettings_label1/rlsettings1_radio6.button_pressed == true:
+			options_text.text = 'ENDURANCE RANDOM (1h15 TO 5H20)'
+		elif options == 'endurance short': options_text.text = 'ENDURANCE SHORT (1H TO 1H35)'
+		elif options == 'endurance medium': options_text.text = 'ENDURANCE MEDIUM (1H40 TO 2H50)'
+		elif options == 'endurance long': options_text.text = 'ENDURANCE LONG (3H TO 5H20)'
+		elif options == 'are you crazy': options_text.text = 'ARE YOU CRAZY? (5H25 TO 7H)'
 	elif current_anim != "singlerace_start":
 		$AnimationPlayer.play_backwards(current_anim)
 		$AnimationPlayer.queue("sr_race_length")
@@ -283,7 +364,7 @@ func sr_race_length():
 	elif btns.sr_race_length_btn9.button_pressed == true: race_length = 'endurance long'
 	elif btns.sr_race_length_btn10.button_pressed == true: race_length = 'are you crazy'
 	else:
-		#não esquecer de mudar o testo para RANDOM
+		#não esquecer de mudar o texto para RANDOM
 		race_length = ['minimum', 'short', 'medium', 'long', 'endurance short', 'endurance medium', 'endurance long', 'are you crazy'].pick_random()
 	
 	return race_length
@@ -317,10 +398,10 @@ func sr_weather():
 	else: weather_conditions = 'random'
 	
 	var weather_slots = 'random'
-	if btns.sr_weather_slot_btn2.button_pressed == true: weather_conditions = '1x slot'
-	elif btns.sr_weather_slot_btn3.button_pressed == true: weather_conditions = '2x slots'
-	elif btns.sr_weather_slot_btn4.button_pressed == true: weather_conditions = '3x slots'
-	elif btns.sr_weather_slot_btn5.button_pressed == true: weather_conditions = '4x slots'
+	if btns.sr_weather_slot_btn2.button_pressed == true: weather_slots = '1x slot'
+	elif btns.sr_weather_slot_btn3.button_pressed == true: weather_slots = '2x slots'
+	elif btns.sr_weather_slot_btn4.button_pressed == true: weather_slots = '3x slots'
+	elif btns.sr_weather_slot_btn5.button_pressed == true: weather_slots = '4x slots'
 	else: weather_slots = 'random'
 	
 	return [weather_conditions, weather_slots]
@@ -354,12 +435,12 @@ func sr_tire_fuel():
 	else: tire_wear = 'random'
 	
 	var fuel_usage = 'random'
-	if btns.sr_fuel_btn2.button_pressed == true: fuel_usage = 'real usage'
-	elif btns.sr_fuel_btn3.button_pressed == true: fuel_usage = 'real usage'
-	elif btns.sr_fuel_btn4.button_pressed == true: fuel_usage = 'real usage'
-	elif btns.sr_fuel_btn5.button_pressed == true: fuel_usage = 'real usage'
-	elif btns.sr_fuel_btn6.button_pressed == true: fuel_usage = 'real usage'
-	elif btns.sr_fuel_btn7.button_pressed == true: fuel_usage = 'real usage'
+	if btns.sr_fuel_btn2.button_pressed == true: fuel_usage = 'real fuel usage'
+	elif btns.sr_fuel_btn3.button_pressed == true: fuel_usage = 'no usage'
+	elif btns.sr_fuel_btn4.button_pressed == true: fuel_usage = '2x fuel usage'
+	elif btns.sr_fuel_btn5.button_pressed == true: fuel_usage = '3x fuel usage'
+	elif btns.sr_fuel_btn6.button_pressed == true: fuel_usage = '4x fuel usage'
+	elif btns.sr_fuel_btn7.button_pressed == true: fuel_usage = '5x fuel usage'
 	else: fuel_usage = 'random'
 	
 	return [tire_wear, fuel_usage]
@@ -384,17 +465,15 @@ func sr_sfcy():
 
 func sr_confirm():
 	class_check(sr_opponent_field())
-	var race_length = sr_race_length()
-	progression_check(sr_time_period_progression(), race_length)
-	#var weather = sr_weather()
-	#var start_type = sr_start_type()
-	#var pitstop = sr_mandatory_pitstop()
-	#var tire_fuel = sr_tire_fuel()
-	#var fcy = sr_fcy()
-	#var sfcy = sr_sfcy()
+	progression_check(sr_time_period_progression(), sr_race_length())
+	weather_check(sr_weather())
+	starttype_check(sr_start_type())
+	pitstop_check(sr_mandatory_pitstop())
+	tire_fuel_check(sr_tire_fuel())
+	fcy_check(sr_fcy())
+	sfcy_check(sr_sfcy())
 
-
-
+#SINGLE RACE CONFIRM LOGICS
 func class_check(opponent_field):
 	randomize()
 	var class_null = database.class_null
@@ -444,12 +523,12 @@ func class_check(opponent_field):
 func progression_check(time_period, race_length):
 	var race_length_text = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_racelength
 	var short = database.short_length.pick_random()
-	var medium = database.short_length.pick_random()
-	var long = database.short_length.pick_random()
-	var endu_short = database.short_length.pick_random()
-	var endu_medium = database.short_length.pick_random()
-	var endu_long = database.short_length.pick_random()
-	var crazy = database.short_length.pick_random()
+	var medium = database.medium_length.pick_random()
+	var long = database.long_length.pick_random()
+	var endu_short = database.short_enduro.pick_random()
+	var endu_medium = database.medium_enduro.pick_random()
+	var endu_long = database.long_enduro.pick_random()
+	var crazy = database.crazy_length.pick_random()
 	if race_length == 'minimum': race_length_text.text = '-  5 minutes race length'
 	elif race_length == 'short': race_length_text.text = '-  ' + short + ' race length'
 	elif race_length == 'medium': race_length_text.text = '-  ' + medium + ' race length'
@@ -463,100 +542,225 @@ func progression_check(time_period, race_length):
 	var time_progression_text = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_timeprogress
 	if time_period[1] == 'daylight only':
 		time_period[0] = 'day'
-		time_progression_text.text = '-  OFF time progression'
+		time_progression_text.text = '-  Set time progression to OFF'
 	elif time_period[1] == 'nighttime only':
 		time_period[0] = 'night'
-		time_progression_text.text = '-  OFF time progression'
-	elif time_period[1] == '3h race':
-		if race_length == 'minimum': time_progression_text.text = '-  40x time progression'
-		elif race_length == 'short':
-			if short == database.short[0]: time_progression_text.text = '-  20x time progression'
-			else: time_progression_text.text = '-  10x time progression'
-		elif race_length == 'medium' or race_length == 'long': time_progression_text.text = '-  5x time progression'
-		elif race_length == 'endurance short' or race_length == 'endurance medium': time_progression_text.text = '-  1x time progression'
-		else: time_progression_text.text = '-  Real time progression'
-	elif time_period[1] == '6h race':
-		if race_length == 'minimum': time_progression_text.text = '-  60x time progression'
-		elif race_length == 'short':
-			if short == database.short[0]: time_progression_text.text = '-  40x time progression'
-			elif short == database.short[1]: time_progression_text.text = '-  25x time progression'
-			else: time_progression_text.text = '-  20x time progression'
-		elif race_length == 'medium':
-			if medium == database.medium_length[0]: time_progression_text.text = '-  15x time progression'
-			else: time_progression_text.text = '-  10x time progression'
-		elif race_length == 'long':
-			if long == database.long_length[0] or long == database.long_length[1]: time_progression_text.text = '-  10x time progression'
-			else: time_progression_text.text = '-  5x time progression'
-		elif race_length == 'endu_short' or race_length == 'endu_medium': time_progression_text.text = '-  5x time progression'
-		elif race_length == 'endu_long': time_progression_text.text = '-  2x time progression'
-		else: time_progression_text.text = '-  Real time progression'
-	elif time_period[1] == '12h race':
-		if race_length == 'minimum': time_progression_text.text = '-  60x time progression'
-		elif race_length == 'short':
-			if short == database.short_length[0]: time_progression_text.text = '-  60x time progression'
-			else: time_progression_text.text = '-  40x time progression'
-		elif race_length == 'medium':
-			if medium == database.medium_length[0]: time_progression_text.text = '-  30x time progression'
-			elif medium == database.medium_length[1]: time_progression_text.text = '-  25x time progression'
-			else: time_progression_text.text = '-  20x time progression'
-		elif race_length == 'long': time_progression_text.text = '-  15x time progression'
-		elif race_length == 'endu_short': time_progression_text.text = '-  10x time progression'
-		elif race_length == 'endu_medium': time_progression_text.text = '-  5x time progression'
-		else: time_progression_text.text = '-  2x time progression'
-	elif time_period[1] == '24h race':
-		if race_length == 'minimum' or race_length == 'short': time_progression_text.text = '-  60x time progression'
-		elif race_length == 'medium':
-			if medium == database.medium[0]: time_progression_text.text = '-  60x time progression'
-			elif medium == database.medium[1]: time_progression_text.text = '-  50x time progression'
-			else: time_progression_text.text = '-  40x time progression'
-		elif race_length == 'long':
-			if long == database.long[0] or long == database.long[1]: time_progression_text.text = '-  30x time progression'
-			else: time_progression_text.text = '-  25x time progression'
-		elif race_length == 'endu_short':
-			if endu_short == database.short_enduro[0] or endu_short == database.short_enduro[1]: time_progression_text.text = '-  20x time progression'
-			else: time_progression_text.text = '-  15x time progression'
-		elif race_length == 'endu_medium':
-			if endu_medium == database.medium_enduro[0] or medium == database.medium_enduro[1] or medium == database.medium_enduro[2] or medium == database.medium_enduro[3]:
-				time_progression_text.text = '-  15x time progression'
-			else: time_progression_text.text = '-  10x time progression'
-		elif race_length == 'endu_long':
-			if endu_long == database.long_enduro[0]: time_progression_text.text = '-  10x time progression'
-			else: time_progression_text.text = '-  5x time progression'
-		else: time_progression_text.text = '-  2x time progression'
-	elif time_period[1] == '36h race':
-		if race_length == 'minimum' or race_length == 'short' or race_length == 'medium':
-			time_progression_text.text = '-  60x time progression'
-		elif race_length == 'long':
-			if long == database.long_length[0] or long == database.long_length[1]: time_progression_text.text = '-  50x time progression'
-			else: time_progression_text.text = '-  40x time progression'
-		elif race_length == 'endu_short':
-			if endu_short == database.short_enduro[0] or endu_short == database.short_enduro[1] or endu_short == database.short_enduro[2]:
-				time_progression_text.text = '-  30x time progression'
-			else: time_progression_text.text = '-  20x time progression'
-		elif race_length == 'endu_medium':
-			if endu_medium == database.medium_enduro[11]: time_progression_text.text = '-  15x time progression'
-			else: time_progression_text.text = '-  20x time progression'
-		elif race_length == 'endu_long':
-			if endu_long == database.long_enduro[8]: time_progression_text.text = '-  5x time progression'
-			else: time_progression_text.text = '-  10x time progression'
-		else: time_progression_text.text = '-  5x time progression'
-	elif time_period[1] == '48h race':
-		if race_length == 'minimum' or race_length == 'short' or race_length == 'medium': time_progression_text.text = '-  60x time progression'
-		elif race_length == 'long':
-			if long == database.long_length[3]: time_progression_text.text = '-  50x time progression'
-		elif race_length == 'endu_short':
-			if endu_short == database.short_enduro[0] or endu_short == database.short_enduro[1]: time_progression_text.text = '-  40x time progression'
-			else: time_progression_text.text = '-  30x time progression'
-		elif race_length == 'endu_medium':
-			if endu_medium == database.medium_enduro[1]: time_progression_text.text = '-  30x time progression'
-			else: time_progression_text.text = '-  20x time progression'
-		elif race_length == 'endu_long':
-			if endu_long == database.long_enduro[0]: time_progression_text.text = '-  15x time progression'
-			else: time_progression_text.text = '-  10x time progression'
-		elif crazy == database.crazy_length[6]: time_progression_text.text = '-  5x time progression'
+		time_progression_text.text = '-  Set time progression to OFF'
+	elif time_period[0] == 'day': start_time_text.text = '-  Race starts at ' + database.day_times.pick_random()
+	elif time_period[0] == 'night': start_time_text.text = '-  Race starts at ' + database.night_times.pick_random()
+	if race_length == 'short':
+		if time_period[1] == '3h race': time_progression_text.text = '-  10x time progression'
+		elif time_period[1] == '6h race': time_progression_text.text = '-  20x time progression'
+		elif time_period[1] == '12h race': time_progression_text.text = '-  35x time progression'
+		elif time_period[1] == '24h race': time_progression_text.text = '-  60x time progression'
+		elif time_period[1] == '36h race': time_progression_text.text = '-  60x time progression'
+		else: time_progression_text.text = '-  60x time progression'
+	elif race_length == 'medium':
+		if time_period[1] == '3h race': time_progression_text.text = '-  5x time progression'
+		elif time_period[1] == '6h race': time_progression_text.text = '-  10x time progression'
+		elif time_period[1] == '12h race': time_progression_text.text = '-  20x time progression'
+		elif time_period[1] == '24h race': time_progression_text.text = '-  40x time progression'
+		elif time_period[1] == '36h race': time_progression_text.text = '-  60x time progression'
+		else: time_progression_text.text = '-  60x time progression'
+	elif race_length == 'long':
+		if time_period[1] == '3h race': time_progression_text.text = '-  2x time progression'
+		elif time_period[1] == '6h race': time_progression_text.text = '-  5x time progression'
+		elif time_period[1] == '12h race': time_progression_text.text = '-  15x time progression'
+		elif time_period[1] == '24h race': time_progression_text.text = '-  25x time progression'
+		elif time_period[1] == '36h race': time_progression_text.text = '-  40x time progression'
+		else: time_progression_text.text = '-  50x time progression'
+	elif race_length == 'endurance short':
+		if time_period[1] == '3h race': time_progression_text.text = '-  2x time progression'
+		elif time_period[1] == '6h race': time_progression_text.text = '-  5x time progression'
+		elif time_period[1] == '12h race': time_progression_text.text = '-  10x time progression'
+		elif time_period[1] == '24h race': time_progression_text.text = '-  15x time progression'
+		elif time_period[1] == '36h race': time_progression_text.text = '-  25x time progression'
+		else: time_progression_text.text = '-  30x time progression'
+	elif race_length == 'endurance medium':
+		if time_period[1] == '3h race': time_progression_text.text = '-  Real Time progression'
+		elif time_period[1] == '6h race': time_progression_text.text = '-  2x time progression'
+		elif time_period[1] == '12h race': time_progression_text.text = '-  5x time progression'
+		elif time_period[1] == '24h race': time_progression_text.text = '-  10x time progression'
+		elif time_period[1] == '36h race': time_progression_text.text = '-  20x time progression'
+		else: time_progression_text.text = '-  25x time progression'
+	elif race_length == 'endurance long':
+		if time_period[1] == '3h race': time_progression_text.text = '-  Real Time progression'
+		elif time_period[1] == '6h race': time_progression_text.text = '-  Real Time progression'
+		elif time_period[1] == '12h race': time_progression_text.text = '-  2x time progression'
+		elif time_period[1] == '24h race': time_progression_text.text = '-  5x time progression'
+		elif time_period[1] == '36h race': time_progression_text.text = '-  10x time progression'
+		else: time_progression_text.text = '-  15x time progression'
+	elif race_length == 'are you crazy':
+		if time_period[1] == '3h race': time_progression_text.text = '-  Real Time progression'
+		elif time_period[1] == '6h race': time_progression_text.text = '-  Real Time progression'
+		elif time_period[1] == '12h race': time_progression_text.text = '-  Real Time progression'
+		elif time_period[1] == '24h race': time_progression_text.text = '-  5x time progression'
+		elif time_period[1] == '36h race': time_progression_text.text = '-  10x time progression'
 		else: time_progression_text.text = '-  10x time progression'
 
-	var daytime = ['08h00', '09h00', '10h00', '11h00', '12h00', '13h00', '14h00', '15h00', '16h00', '17h00'].pick_random()
-	var nighttime = ['20h00', '21h00', '22h00', '23h00', '00h00', '01h00', '02h00', '03h00', '04h00', '05h00'].pick_random()
-	if time_period[0] == 'day': start_time_text.text = '-  Race starts at ' + daytime
-	else: start_time_text.text = '-  Race starts at ' + nighttime
+func weather_check(weather):
+	var weather_null = database.weather_null
+	var weathers_choosed = []
+	
+	#decide how many slots
+	var weather_slots = 1
+	if weather[1] == '1x slot': weather_slots = 1
+	elif weather[1] == '2x slots': weather_slots = 2
+	elif weather[1] == '3x slots': weather_slots = 3
+	elif weather[1] == '4x slots': weather_slots = 4
+	else: weather_slots = randi_range(1,4)
+	
+	#apply which type of weather to add
+	var weathers = [weather_null, weather_null, weather_null, weather_null]
+	if weather[0] == 'allow rain':
+		for x in database.clean_weathers: weathers_choosed.append(x)
+		for y in database.rain_weathers: weathers_choosed.append(y)
+		weathers_choosed.shuffle()
+		if weather_slots == 1: weathers[0] = weathers_choosed.pick_random()
+		elif weather_slots == 2:
+			weathers[0] = weathers_choosed.pick_random()
+			weathers[1] = weathers_choosed.pick_random()
+		elif weather_slots == 3:
+			weathers[0] = weathers_choosed.pick_random()
+			weathers[1] = weathers_choosed.pick_random()
+			weathers[2] = weathers_choosed.pick_random()
+		else:
+			weathers[0] = weathers_choosed.pick_random()
+			weathers[1] = weathers_choosed.pick_random()
+			weathers[2] = weathers_choosed.pick_random()
+			weathers[3] = weathers_choosed.pick_random()
+	elif weather[0] == 'no rain':
+		for x in database.clean_weathers: weathers_choosed.append(x)
+		weathers_choosed.shuffle()
+		if weather_slots == 1: weathers[0] = weathers_choosed.pick_random()
+		elif weather_slots == 2:
+			weathers[0] = weathers_choosed.pick_random()
+			weathers[1] = weathers_choosed.pick_random()
+		elif weather_slots == 3:
+			weathers[0] = weathers_choosed.pick_random()
+			weathers[1] = weathers_choosed.pick_random()
+			weathers[2] = weathers_choosed.pick_random()
+		else:
+			weathers[0] = weathers_choosed.pick_random()
+			weathers[1] = weathers_choosed.pick_random()
+			weathers[2] = weathers_choosed.pick_random()
+			weathers[3] = weathers_choosed.pick_random()
+	elif weather[0] == 'only rain':
+		for x in database.rain_weathers:
+			if x == "res://Images/Weathers/weather14.png": continue
+			else: weathers_choosed.append(x)
+		weathers_choosed.shuffle()
+		if weather_slots == 1: weathers[0] = weathers_choosed.pick_random()
+		elif weather_slots == 2:
+			weathers[0] = weathers_choosed.pick_random()
+			weathers[1] = weathers_choosed.pick_random()
+		elif weather_slots == 3:
+			weathers[0] = weathers_choosed.pick_random()
+			weathers[1] = weathers_choosed.pick_random()
+			weathers[2] = weathers_choosed.pick_random()
+		else:
+			weathers[0] = weathers_choosed.pick_random()
+			weathers[1] = weathers_choosed.pick_random()
+			weathers[2] = weathers_choosed.pick_random()
+			weathers[3] = weathers_choosed.pick_random()
+	else:
+		if weather_slots == 1 : weathers[0] = database.clean_weathers[8]
+		elif weather_slots == 2 :
+			weathers[0] = database.clean_weathers[8]
+			weathers[1] = database.clean_weathers[8]
+		elif weather_slots == 3 :
+			weathers[0] = database.clean_weathers[8]
+			weathers[1] = database.clean_weathers[8]
+			weathers[2] = database.clean_weathers[8]
+		else:
+			weathers[0] = database.clean_weathers[8]
+			weathers[1] = database.clean_weathers[8]
+			weathers[2] = database.clean_weathers[8]
+			weathers[3] = database.clean_weathers[8]
+	
+	#apply the results
+	$single_race_screen/Control/srgen_panel/srgen_settings/weather_img1.texture = load(weathers[0])
+	$single_race_screen/Control/srgen_panel/srgen_settings/weather_img2.texture = load(weathers[1])
+	$single_race_screen/Control/srgen_panel/srgen_settings/weather_img3.texture = load(weathers[2])
+	$single_race_screen/Control/srgen_panel/srgen_settings/weather_img4.texture = load(weathers[3])
+
+func starttype_check(start):
+	var start_text = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_starttype
+	if start == 'standing': start_text.text = '-  Standing start'
+	elif start == 'rolling': start_text.text = '-  Rolling start'
+	else:
+		var start_choosed = ['standing', 'rolling'].pick_random()
+		if start_choosed == 'standing': start_text.text = '-  Standing start'
+		else: start_text.text = '-  Rolling start'
+
+func pitstop_check(pitstop):
+	var pitstop_text = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_pitstop
+	if pitstop == 'no pitstop': pitstop_text.text = '-  No mandatory pitstop'
+	elif pitstop == 'pitstop no tires': pitstop_text.text = '-  Mandatory pitstop with no tire change'
+	elif pitstop == 'pitstop 2 tires': pitstop_text.text = '-  Mandatory pitstop with 2x tires change'
+	elif pitstop == 'pitstop 4 tires': pitstop_text.text = '-  Mandatory pitstop with 4x tires change'
+	else:
+		var pitstop_options = ['no pitstop', 'no tires', '2 tires', '4 tires'].pick_random()
+		if pitstop_options == 'no pitstop': pitstop_text.text = '-  No mandatory pitstop'
+		elif pitstop_options == 'no tires': pitstop_text.text = '-  Mandatory pitstop with no tire change'
+		elif pitstop_options == '2 tires': pitstop_text.text = '-  Mandatory pitstop with 2x tires change'
+		else: pitstop_text.text = '-  Mandatory pitstop with 4x tires change'
+
+func tire_fuel_check(tire_fuel):
+	var tire = tire_fuel[0]
+	var fuel = tire_fuel[1]
+	var tire_fuel_text = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_tirefuel
+	
+	#decide tire wear conditions
+	if tire == 'authentic': tire_fuel_text.text = '-  Authentic Tire wear'
+	elif tire == 'no tire wear': tire_fuel_text.text = '-  No Tire wear'
+	elif tire == '2x tire wear': tire_fuel_text.text = '-  2x Tire wear'
+	elif tire == '3x tire wear': tire_fuel_text.text = '-  3x Tire wear'
+	elif tire == '4x tire wear': tire_fuel_text.text = '-  4x Tire wear'
+	elif tire == '5x tire wear': tire_fuel_text.text = '-  5x Tire wear'
+	else:
+		var tire_choosed = ['authentic', 'no tire wear', '2x tire wear', '3x tire wear', '4x tire wear', '5x tire wear'].pick_random()
+		if tire_choosed == 'authentic': tire_fuel_text.text = '-  Authentic Tire wear'
+		elif tire_choosed == 'no tire wear': tire_fuel_text.text = '-  No Tire wear'
+		elif tire_choosed == '2x tire wear': tire_fuel_text.text = '-  2x Tire wear'
+		elif tire_choosed == '3x tire wear': tire_fuel_text.text = '-  3x Tire wear'
+		elif tire_choosed == '4x tire wear': tire_fuel_text.text = '-  4x Tire wear'
+		else: tire_fuel_text.text = '-  5x Tire wear'
+
+	#decide fuel usage conditions
+	if fuel == 'real fuel usage': tire_fuel_text.text += '  -  Real Fuel usage'
+	elif fuel == 'no fuel usage': tire_fuel_text.text += '  -  No Fuel usage'
+	elif fuel == '2x fuel usage': tire_fuel_text.text += '  -  2x Fuel usage'
+	elif fuel == '3x fuel usage': tire_fuel_text.text += '  -  3x Fuel usage'
+	elif fuel == '4x fuel usage': tire_fuel_text.text += '  -  4x Fuel usage'
+	elif fuel == '5x fuel usage': tire_fuel_text.text += '  -  5x Fuel usage'
+	else:
+		var fuel_choosed = ['real fuel', 'no fuel', '2x fuel', '3x fuel', '4x fuel', '5x fuel'].pick_random()
+		if fuel_choosed == 'real fuel': tire_fuel_text.text += '  -  Real Fuel usage'
+		elif fuel_choosed == 'no fuel': tire_fuel_text.text += '  -  No Fuel usage'
+		elif fuel_choosed == '2x fuel': tire_fuel_text.text += '  -  2x Fuel usage'
+		elif fuel_choosed == '3x fuel': tire_fuel_text.text += '  -  3x Fuel usage'
+		elif fuel_choosed == '4x fuel': tire_fuel_text.text += '  -  4x Fuel usage'
+		else: tire_fuel_text.text += '  -  5x Fuel usage'
+
+func fcy_check(fcy):
+	var fcy_text = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_fcy
+	if fcy == 'no fcy': fcy_text.text = '-  NO Full Course Yellows'
+	elif fcy == 'with fcy': fcy_text.text = '-  Allow Full Course Yellows'
+	else:
+		var fcy_choosed = ['no fcy', 'with fcy'].pick_random()
+		if fcy_choosed == 'no fcy': fcy_text.text = '-  NO Full Course Yellows'
+		else: fcy_text.text = '-  Allow Full Course Yellows'
+
+func sfcy_check(sfcy):
+	var sfcy_text = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_sfcy
+	if sfcy == 'no sfcy': sfcy_text.text = '-  NO Scheduled Full Course Yellow'
+	elif sfcy == '75% sfcy': sfcy_text.text = '-  75% race Scheduled Full Course Yellow'
+	elif sfcy == '50% sfcy': sfcy_text.text = '-  50% race Scheduled Full Course Yellow'
+	elif sfcy == '25% sfcy': sfcy_text.text = '-  25% race Scheduled Full Course Yellow'
+	else:
+		var sfcy_choosed = ['no sfcy', '75% sfcy', '50% sfcy', '25% sfcy'].pick_random()
+		if sfcy_choosed == 'no sfcy': sfcy_text.text = '-  NO Scheduled Full Course Yellow'
+		elif sfcy_choosed == '75% sfcy': sfcy_text.text = '-  75% race Scheduled Full Course Yellow'
+		elif sfcy_choosed == '50% sfcy': sfcy_text.text = '-  50% race Scheduled Full Course Yellow'
+		elif sfcy_choosed == '25% sfcy': sfcy_text.text = '-  25% race Scheduled Full Course Yellow'

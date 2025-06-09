@@ -30,3 +30,6 @@ var short_enduro = ['1h15', '1h20', '1h25', '1h30', '1h35']
 var medium_enduro = ['1h40', '1h45', '1h50', '1h55', '2 hours', '2h10', '2h15', '2h20', '2h25', '2h30', '2h35', '2h40']
 var long_enduro = ['3 hours', '3h15', '3h30', '3h45', '4 hours', '4h15', '4h30', '4h45', '5 hours', '5h20']
 var crazy_length = ['5h25', '5h45', '6 hours', '6h15', '6h30', '6h45', '7 hours']
+
+var day_times = ['8h00','9h00','10h00','11h00','12h00','13h00','14h00','15h00']
+var night_times = ['00h00','01h00','02h00','03h00','04h00','20h00','21h00','22h00','23h00']

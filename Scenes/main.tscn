@@ -1171,6 +1171,126 @@ tracks/91/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/92/type = "value"
+tracks/92/imported = false
+tracks/92/enabled = true
+tracks/92/path = NodePath("single_race_screen/Control/singlerace_panel3/timeperiod_settings/tpsettings_label1/rlsettings1_radio1:button_pressed")
+tracks/92/interp = 1
+tracks/92/loop_wrap = true
+tracks/92/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/93/type = "value"
+tracks/93/imported = false
+tracks/93/enabled = true
+tracks/93/path = NodePath("single_race_screen/Control/singlerace_panel3/timeperiod_settings/tpsettings_label2/tpsettings1_radio1:button_pressed")
+tracks/93/interp = 1
+tracks/93/loop_wrap = true
+tracks/93/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/94/type = "value"
+tracks/94/imported = false
+tracks/94/enabled = true
+tracks/94/path = NodePath("single_race_screen/Control/singlerace_panel4/weather_settings/wsettings_label1/wsettings1_radio1:button_pressed")
+tracks/94/interp = 1
+tracks/94/loop_wrap = true
+tracks/94/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/95/type = "value"
+tracks/95/imported = false
+tracks/95/enabled = true
+tracks/95/path = NodePath("single_race_screen/Control/singlerace_panel4/weather_settings/wsettings_label2/wsettings1_radio1:button_pressed")
+tracks/95/interp = 1
+tracks/95/loop_wrap = true
+tracks/95/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/96/type = "value"
+tracks/96/imported = false
+tracks/96/enabled = true
+tracks/96/path = NodePath("single_race_screen/Control/singlerace_panel5/starttype_settings/wsettings_label1/stsettings1_radio1:button_pressed")
+tracks/96/interp = 1
+tracks/96/loop_wrap = true
+tracks/96/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/97/type = "value"
+tracks/97/imported = false
+tracks/97/enabled = true
+tracks/97/path = NodePath("single_race_screen/Control/singlerace_panel6/pitstop_settings/pssettings_label1/pssettings1_radio1:button_pressed")
+tracks/97/interp = 1
+tracks/97/loop_wrap = true
+tracks/97/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/98/type = "value"
+tracks/98/imported = false
+tracks/98/enabled = true
+tracks/98/path = NodePath("single_race_screen/Control/singlerace_panel7/tirefuel_settings/tfsettings_label1/tfsettings1_radio1:button_pressed")
+tracks/98/interp = 1
+tracks/98/loop_wrap = true
+tracks/98/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/99/type = "value"
+tracks/99/imported = false
+tracks/99/enabled = true
+tracks/99/path = NodePath("single_race_screen/Control/singlerace_panel7/tirefuel_settings/tfsettings_label2/tfsettings2_radio1:button_pressed")
+tracks/99/interp = 1
+tracks/99/loop_wrap = true
+tracks/99/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/100/type = "value"
+tracks/100/imported = false
+tracks/100/enabled = true
+tracks/100/path = NodePath("single_race_screen/Control/singlerace_panel8/fcy_settings/fcysettings_label1/fcysettings1_radio1:button_pressed")
+tracks/100/interp = 1
+tracks/100/loop_wrap = true
+tracks/100/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/101/type = "value"
+tracks/101/imported = false
+tracks/101/enabled = true
+tracks/101/path = NodePath("single_race_screen/Control/singlerace_panel9/sfcy_settings/sfcysettings_label1/sfcysettings1_radio1:button_pressed")
+tracks/101/interp = 1
+tracks/101/loop_wrap = true
+tracks/101/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_7nto6"]
 resource_name = "app_start"
@@ -7080,7 +7200,7 @@ offset_right = 557.0
 offset_bottom = 78.0
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 23
-text = "4x MULTICLASS  -  PROTOTYPE ONLY"
+text = "RANDOM CLASSES  -  ALL CLASSES"
 vertical_alignment = 1
 uppercase = true
 
@@ -7706,7 +7826,7 @@ offset_right = 589.0
 offset_bottom = 76.0
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 23
-text = "ENDURANCE RANDOM (1h15 to 5h20)"
+text = "RANDOM DURATION"
 vertical_alignment = 1
 uppercase = true
 
@@ -8024,7 +8144,7 @@ offset_right = 609.0
 offset_bottom = 78.0
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 23
-text = "START AT NIGHT  -  SIMULATE A 24h RACE"
+text = "RANDOM PERIOD  -  RANDOM PROGRESSION"
 vertical_alignment = 1
 uppercase = true
 
@@ -8052,6 +8172,7 @@ offset_right = 30.0
 offset_bottom = 75.0
 mouse_default_cursor_shape = 2
 toggle_mode = true
+button_pressed = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_r1tvq")
 texture_normal = ExtResource("17_ftpuc")
@@ -8139,6 +8260,7 @@ offset_right = 30.0
 offset_bottom = 75.0
 mouse_default_cursor_shape = 2
 toggle_mode = true
+button_pressed = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_lsrm6")
 texture_normal = ExtResource("17_ftpuc")
@@ -8414,7 +8536,7 @@ offset_right = 575.0
 offset_bottom = 78.0
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 23
-text = "RAINING WEATHERS ONLY  -  4x SLOTS"
+text = "RANDOM WEATHER  -  RANDOM SLOTS"
 vertical_alignment = 1
 uppercase = true
 
@@ -8442,6 +8564,7 @@ offset_right = 30.0
 offset_bottom = 75.0
 mouse_default_cursor_shape = 2
 toggle_mode = true
+button_pressed = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_gwxdc")
 texture_normal = ExtResource("17_ftpuc")
@@ -8551,6 +8674,7 @@ offset_right = 30.0
 offset_bottom = 75.0
 mouse_default_cursor_shape = 2
 toggle_mode = true
+button_pressed = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_8o8in")
 texture_normal = ExtResource("17_ftpuc")
@@ -8720,7 +8844,7 @@ offset_right = 359.0
 offset_bottom = 78.0
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 23
-text = "STANDING START"
+text = "RANDOM START"
 vertical_alignment = 1
 uppercase = true
 
@@ -8748,6 +8872,7 @@ offset_right = 30.0
 offset_bottom = 75.0
 mouse_default_cursor_shape = 2
 toggle_mode = true
+button_pressed = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_mlvw0")
 texture_normal = ExtResource("17_ftpuc")
@@ -8869,7 +8994,7 @@ offset_right = 450.0
 offset_bottom = 76.0
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 23
-text = "NO MANDATORY PITSTOP"
+text = "RANDOM PITSTOP"
 vertical_alignment = 1
 uppercase = true
 
@@ -8897,6 +9022,7 @@ offset_right = 30.0
 offset_bottom = 75.0
 mouse_default_cursor_shape = 2
 toggle_mode = true
+button_pressed = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_77e23")
 texture_normal = ExtResource("17_ftpuc")
@@ -9094,6 +9220,7 @@ offset_right = 30.0
 offset_bottom = 75.0
 mouse_default_cursor_shape = 2
 toggle_mode = true
+button_pressed = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_8b4kc")
 texture_normal = ExtResource("17_ftpuc")
@@ -9275,6 +9402,7 @@ offset_right = 30.0
 offset_bottom = 75.0
 mouse_default_cursor_shape = 2
 toggle_mode = true
+button_pressed = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_8lr0k")
 texture_normal = ExtResource("17_ftpuc")
@@ -9492,7 +9620,7 @@ offset_right = 505.0
 offset_bottom = 77.0
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 23
-text = "ALLOW FULL COURSE YELLOWS"
+text = "RANDOM"
 vertical_alignment = 1
 uppercase = true
 
@@ -9520,6 +9648,7 @@ offset_right = 30.0
 offset_bottom = 75.0
 mouse_default_cursor_shape = 2
 toggle_mode = true
+button_pressed = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_0fdav")
 texture_normal = ExtResource("17_ftpuc")
@@ -9669,6 +9798,7 @@ offset_right = 30.0
 offset_bottom = 75.0
 mouse_default_cursor_shape = 2
 toggle_mode = true
+button_pressed = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_krbir")
 texture_normal = ExtResource("17_ftpuc")
@@ -9955,7 +10085,7 @@ offset_bottom = 697.0
 theme_override_colors/font_outline_color = Color(0.784314, 0.215686, 0.215686, 1)
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 32
-text = "- 10x Tire wear  -  10x Fuel usage"
+text = "-  10x Tire wear  -  10x Fuel usage"
 clip_text = true
 
 [node name="srgen_fcy" type="Label" parent="single_race_screen/Control/srgen_panel/srgen_settings"]
