@@ -9,7 +9,7 @@ var fretro = ["res://Images/Classes/class23.png", "res://Images/Classes/class24.
 var fv10 = ["res://Images/Classes/class34.png", "res://Images/Classes/class35.png"]
 var fvintage = ["res://Images/Classes/class21.png", "res://Images/Classes/class38.png", "res://Images/Classes/class39.png"]
 var gthistorical = ["res://Images/Classes/class42.png", "res://Images/Classes/class44.png"]
-var gtmodern = ["res://Images/Classes/class40.png", "res://Images/Classes/class41.png", "res://Images/Classes/class43.png", "res://Images/Classes/class45.png", "res://Images/Classes/class46.png", "res://Images/Classes/class47.png", "res://Images/Classes/class48.png", "res://Images/Classes/class49.png", "res://Images/Classes/class72.png", "res://Images/Classes/class84.png"]
+var gtmodern = ["res://Images/Classes/class40.png", "res://Images/Classes/class41.png", "res://Images/Classes/class43.png", "res://Images/Classes/class45.png", "res://Images/Classes/class46.png", "res://Images/Classes/class47.png", "res://Images/Classes/class48.png", "res://Images/Classes/class49.png", "res://Images/Classes/class72.png", "res://Images/Classes/class84.png", "res://Images/Classes/class91.png"]
 var kart = ["res://Images/Classes/class54.png", "res://Images/Classes/class55.png", "res://Images/Classes/class56.png", "res://Images/Classes/class57.png", "res://Images/Classes/class87.png"]
 var prototypes = ["res://Images/Classes/class11.png", "res://Images/Classes/class51.png", "res://Images/Classes/class59.png", "res://Images/Classes/class60.png", "res://Images/Classes/class61.png", "res://Images/Classes/class67.png", "res://Images/Classes/class68.png", "res://Images/Classes/class69.png", "res://Images/Classes/class70.png", "res://Images/Classes/class71.png"]
 var rally = ["res://Images/Classes/class19.png", "res://Images/Classes/class58.png", "res://Images/Classes/class74.png"]
@@ -20,16 +20,30 @@ var touringhistoric = ["res://Images/Classes/class05.png", "res://Images/Classes
 var touringmodern = ["res://Images/Classes/class62.png", "res://Images/Classes/class63.png", "res://Images/Classes/class88.png"]
 
 var weather_null = "res://Images/Weathers/weather_null.jpg"
-var clean_weathers = ["res://Images/Weathers/weather00.png", "res://Images/Weathers/weather01.png", "res://Images/Weathers/weather02.png", "res://Images/Weathers/weather03.png", "res://Images/Weathers/weather04.png", "res://Images/Weathers/weather09.png", "res://Images/Weathers/weather11.png", "res://Images/Weathers/weather13.png", "res://Images/Weathers/weather14.png"]
-var rain_weathers = ["res://Images/Weathers/weather05.png", "res://Images/Weathers/weather06.png", "res://Images/Weathers/weather07.png", "res://Images/Weathers/weather08.png", "res://Images/Weathers/weather10.png", "res://Images/Weathers/weather12.png", "res://Images/Weathers/weather14.png"]
+var clean_weathers = ["res://Images/Weathers/weather00.png", "res://Images/Weathers/weather01.png", "res://Images/Weathers/weather02.png", "res://Images/Weathers/weather03.png", "res://Images/Weathers/weather04.png", "res://Images/Weathers/weather09.png", "res://Images/Weathers/weather11.png", "res://Images/Weathers/weather13.png"]
+var rain_weathers = ["res://Images/Weathers/weather05.png", "res://Images/Weathers/weather06.png", "res://Images/Weathers/weather07.png", "res://Images/Weathers/weather08.png", "res://Images/Weathers/weather10.png", "res://Images/Weathers/weather12.png"]
+var random_weather = "res://Images/Weathers/weather14.png"
 
 var short_length = ['10 minutes', '15 minutes', '20 minutes']
 var medium_length = ['25 minutes', '30 minutes', '35 minutes', '40 minutes']
 var long_length = ['45 minutes', '50 minutes', '55 minutes', '1 hour']
-var short_enduro = ['1h15', '1h20', '1h25', '1h30', '1h35']
-var medium_enduro = ['1h40', '1h45', '1h50', '1h55', '2 hours', '2h10', '2h15', '2h20', '2h25', '2h30', '2h35', '2h40']
-var long_enduro = ['3 hours', '3h15', '3h30', '3h45', '4 hours', '4h15', '4h30', '4h45', '5 hours', '5h20']
-var crazy_length = ['5h25', '5h45', '6 hours', '6h15', '6h30', '6h45', '7 hours']
+var short_enduro = ['1h15m', '1h20m', '1h25m', '1h30m', '1h35m']
+var medium_enduro = ['1h40m', '1h45m', '1h50m', '1h55m', '2 hours', '2h10m', '2h15m', '2h20m', '2h25m', '2h30m', '2h35m', '2h40m']
+var long_enduro = ['3 hours', '3h15m', '3h30m', '3h45m', '4 hours', '4h15m', '4h30m', '4h45m', '5 hours', '5h20m']
+var crazy_length = ['5h25m', '5h45m', '6 hours', '6h15m', '6h30m', '6h45m', '7 hours']
 
-var day_times = ['8h00','9h00','10h00','11h00','12h00','13h00','14h00','15h00']
+var day_times = ['08h00','09h00','10h00','11h00','12h00','13h00','14h00','15h00']
 var night_times = ['00h00','01h00','02h00','03h00','04h00','20h00','21h00','22h00','23h00']
+
+var weather_titles = ['Clear Skies', 'Brilliant Moonlight', 'Raining Day', 'Moon and the Rain',
+'Raging Storms', 'Foggy Drama', 'Endless Daylight', 'Never Ending Night', 'Forever Dry', 'Eternal Rain']
+var daytime_titles = ['Happy Day', 'Cool Night', 'Daytime', 'Nighttime', 'Midday', 'Midnight', 'Morning',
+'Dawn', 'Aurora time', 'Dawn of a', 'Dusk']
+var class_titles = ['Caterhams', 'Retro Formula', 'Formula', 'Vintage GT', 'GT', 'Karting',
+'Prototypes', 'Rally', 'Old StockCar', 'StockCar', 'Grand Tourism', 'Classic Tourism', 'Multiclass']
+var progression_titles = ['3 Hours', '6 Hours', '12 Hours', 'Half-day', '24 Hours', '36 Hours',
+'48 Hours', '2-Days Nonstop']
+var complement_titles = ['Challenge', 'Royal Clash', 'Racing Fun', 'Raging Race', 'Adrenaline Race',
+'Masters Race', 'Rumble', 'Duel', 'All-Stars Race', 'Racing Showdown', 'Faceoff', 'Mayhem',
+'Road Rampage', 'Blasting Race', 'Racing Event', 'Race Event', 'Road Adventure',
+'Intense Race']

@@ -2,6 +2,7 @@ extends Node
 
 @onready var btns = $Buttons
 @onready var database = $Database
+@onready var tracksdb = $"Tracks Database"
 
 var current_anim = "app_start"
 var next_anim
@@ -11,6 +12,14 @@ func _ready():
 
 #SINGLE RACE BUTTONS AND ANIMATIONS
 func _on_singlerace_button_pressed():
+	#desativar Rally se não houver a DLC
+	if $dlc_config_screen/dlc_panel/dlc_settings/dlc10.button_pressed == false:
+		$single_race_screen/Control/singlerace_panel1/fieldtype_settings/ftsettings_label2/ftsettings1_radio11.set_disabled(true)
+		$single_race_screen/Control/singlerace_panel1/fieldtype_settings/ftsettings_label2/ftsettings1_radio11.button_pressed = false
+	else:
+		$single_race_screen/Control/singlerace_panel1/fieldtype_settings/ftsettings_label2/ftsettings1_radio11.set_disabled(false)
+		$single_race_screen/Control/singlerace_panel1/fieldtype_settings/ftsettings_label2/ftsettings1_radio11.button_pressed = true
+
 	if current_anim == "singlerace_start": pass
 	elif current_anim != "app_start":
 		$AnimationPlayer.play_backwards(current_anim)
@@ -197,6 +206,28 @@ func _on_sr_timeperiod_button_pressed():
 		$AnimationPlayer.play_backwards(current_anim)
 		current_anim = "singlerace_start"
 		$single_race_screen/Control/singlerace_panel3/change_button/change_label.text = "CHANGE"
+		var option_text = $single_race_screen/Control/singlerace_panel3/timeperiodoption_label
+		var options = sr_time_period_progression()
+		var option1_text= ""
+		var option2_text= ""
+		
+		if $single_race_screen/Control/singlerace_panel3/timeperiod_settings/tpsettings_label1/rlsettings1_radio1.button_pressed == true:
+			option1_text = "RANDOM PERIOD  -"
+		elif options[0] == 'day': option1_text = 'DAYTIME START  -'
+		elif options[0] == 'night': option1_text = 'NIGHTTIME START  -'
+		
+		if $single_race_screen/Control/singlerace_panel3/timeperiod_settings/tpsettings_label2/tpsettings1_radio1.button_pressed == true:
+			option2_text = "  RANDOM PROGRESSION"
+		elif options[1] == 'daylight only': option2_text = "  RACE ONLY AT DAYLIGHT"
+		elif options[1] == 'nighttime only': option2_text = "  RACE ONLY AT NIGHTTIME"
+		elif options[1] == '3h race': option2_text = "  SIMULATE A 3 HOURS RACE"
+		elif options[1] == '6h race': option2_text = "  SIMULATE A 6 HOURS RACE"
+		elif options[1] == '12h race': option2_text = "  SIMULATE A 12 HOURS RACE"
+		elif options[1] == '24h race': option2_text = "  SIMULATE A 24 HOURS RACE"
+		elif options[1] == '36h race': option2_text = "  SIMULATE A 36 HOURS RACE"
+		elif options[1] == '48h race': option2_text = "  SIMULATE A 48 HOURS RACE"
+		option_text.text = option1_text + option2_text
+		
 	elif current_anim != "singlerace_start":
 		$AnimationPlayer.play_backwards(current_anim)
 		$AnimationPlayer.queue("sr_time_period")
@@ -212,6 +243,27 @@ func _on_sr_weather_button_pressed():
 		$AnimationPlayer.play_backwards(current_anim)
 		current_anim = "singlerace_start"
 		$single_race_screen/Control/singlerace_panel4/change_button/change_label.text = "CHANGE"
+		
+		var option_text = $single_race_screen/Control/singlerace_panel4/weatheroption_label
+		var options = sr_weather()
+		var option1_text= ""
+		var option2_text= ""
+		
+		if $single_race_screen/Control/singlerace_panel4/weather_settings/wsettings_label1/wsettings1_radio1.button_pressed == true:
+			option1_text = "RANDOM WEATHER  -"
+		elif options[0] == 'allow rain': option1_text = "ALLOW RAINING WEATHERS  -"
+		elif options[0] == 'no rain': option1_text = "REMOVE RAINING WEATHERS  -"
+		elif options[0] == 'only rain': option1_text = "ONLY RAINING WEATHERS  -"
+		
+		if $single_race_screen/Control/singlerace_panel4/weather_settings/wsettings_label2/wsettings1_radio1.button_pressed == true:
+			option2_text = "  RANDOM SLOTS"
+		elif options[1] == '1x slot': option2_text = "  1x SLOT"
+		elif options[1] == '2x slots': option2_text = "  2x SLOTS"
+		elif options[1] == '3x slots': option2_text = "  3x SLOTS"
+		elif options[1] == '4x slots': option2_text = "  4x SLOTS"
+
+		option_text.text = option1_text + option2_text
+		
 	elif current_anim != "singlerace_start":
 		$AnimationPlayer.play_backwards(current_anim)
 		$AnimationPlayer.queue("sr_weather")
@@ -227,6 +279,14 @@ func _on_sr_starttype_button_pressed():
 		$AnimationPlayer.play_backwards(current_anim)
 		current_anim = "singlerace_start"
 		$single_race_screen/Control/singlerace_panel5/change_button/change_label.text = "CHANGE"
+		
+		var option_text = $single_race_screen/Control/singlerace_panel5/starttypeoption_label
+		var options = sr_start_type()
+		if $single_race_screen/Control/singlerace_panel5/starttype_settings/wsettings_label1/stsettings1_radio1.button_pressed == true:
+			option_text.text = "RANDOM START"
+		elif options == 'standing': option_text.text = "STANDING START"
+		elif options == 'rolling': option_text.text = "ROLLING START"
+		
 	elif current_anim != "singlerace_start":
 		$AnimationPlayer.play_backwards(current_anim)
 		$AnimationPlayer.queue("sr_start_type")
@@ -242,6 +302,17 @@ func _on_sr_pitstop_button_pressed():
 		$AnimationPlayer.play_backwards(current_anim)
 		current_anim = "singlerace_start"
 		$single_race_screen/Control/singlerace_panel6/change_button/change_label.text = "CHANGE"
+		
+		var option_text = $single_race_screen/Control/singlerace_panel6/pitstopoption_label
+		var options = sr_mandatory_pitstop()
+		
+		if $single_race_screen/Control/singlerace_panel6/pitstop_settings/pssettings_label1/pssettings1_radio1.button_pressed == true:
+			option_text.text = "RANDOM PITSTOP"
+		elif options == 'no pitstop': option_text.text = "NO MANDATORY PITSTOP"
+		elif options == 'pitstop no tires': option_text.text = "MANDATORY PITSTOP  -  NO TIRES CHANGE"
+		elif options == 'pitstop 2 tires': option_text.text = "MANDATORY PITSTOP  -  2 TIRES CHANGE"
+		elif options == 'pitstop 4 tires': option_text.text = "MANDATORY PITSTOP  -  4 TIRES CHANGE"
+		
 	elif current_anim != "singlerace_start":
 		$AnimationPlayer.play_backwards(current_anim)
 		$AnimationPlayer.queue("sr_mandatory_pitstop")
@@ -257,6 +328,32 @@ func _on_sr_tirefuel_button_pressed():
 		$AnimationPlayer.play_backwards(current_anim)
 		current_anim = "singlerace_start"
 		$single_race_screen/Control/singlerace_panel7/change_button/change_label.text = "CHANGE"
+		
+		var options_text = $single_race_screen/Control/singlerace_panel7/tirewearoption_label
+		var options = sr_tire_fuel()
+		var option1_text = ""
+		var option2_text = ""
+		
+		if $single_race_screen/Control/singlerace_panel7/tirefuel_settings/tfsettings_label1/tfsettings1_radio1.button_pressed == true:
+			option1_text = "RANDOM TIRE WEAR  -"
+		elif options[0] == 'authentic': option1_text = "AUTHENTIC TIRE WEAR  -"
+		elif options[0] == 'no tire wear': option1_text = "NO TIRE WEAR  -"
+		elif options[0] == '2x tire wear': option1_text = "2X TIRE WEAR  -"
+		elif options[0] == '3x tire wear': option1_text = "3X TIRE WEAR  -"
+		elif options[0] == '4x tire wear': option1_text = "4X TIRE WEAR  -"
+		elif options[0] == '5x tire wear': option1_text = "5X TIRE WEAR  -"
+		
+		if $single_race_screen/Control/singlerace_panel7/tirefuel_settings/tfsettings_label2/tfsettings2_radio1.button_pressed == true:
+			option2_text = "  RANDOM FUEL USAGE"
+		elif options[1] == 'real fuel usage': option2_text = "  REAL FUEL USAGE"
+		elif options[1] == 'no usage': option2_text = "  NO FUEL USAGE"
+		elif options[1] == '2x fuel usage': option2_text = "  2X FUEL USAGE"
+		elif options[1] == '3x fuel usage': option2_text = "  3X FUEL USAGE"
+		elif options[1] == '4x fuel usage': option2_text = "  4X FUEL USAGE"
+		elif options[1] == '5x fuel usage': option2_text = "  5X FUEL USAGE"
+		
+		options_text.text = option1_text + option2_text
+		
 	elif current_anim != "singlerace_start":
 		$AnimationPlayer.play_backwards(current_anim)
 		$AnimationPlayer.queue("sr_tire_fuel")
@@ -272,6 +369,15 @@ func _on_sr_fcy_button_pressed():
 		$AnimationPlayer.play_backwards(current_anim)
 		current_anim = "singlerace_start"
 		$single_race_screen/Control/singlerace_panel8/change_button/change_label.text = "CHANGE"
+		
+		var options_text = $single_race_screen/Control/singlerace_panel8/fcyoption_label
+		var options = sr_fcy()
+		
+		if $single_race_screen/Control/singlerace_panel8/fcy_settings/fcysettings_label1/fcysettings1_radio1.button_pressed == true:
+			options_text.text = "RANDOM"
+		elif options == "no fcy": options_text.text = "NO FULL COURSE YELLOWS"
+		elif options == "with fcy": options_text.text = "ALLOW FULL COURSE YELLOWS"
+		
 	elif current_anim != "singlerace_start":
 		$AnimationPlayer.play_backwards(current_anim)
 		$AnimationPlayer.queue("sr_fcy")
@@ -287,6 +393,17 @@ func _on_sr_sfcy_button_pressed():
 		$AnimationPlayer.play_backwards(current_anim)
 		current_anim = "singlerace_start"
 		$single_race_screen/Control/singlerace_panel9/change_button/change_label.text = "CHANGE"
+		
+		var options_text = $single_race_screen/Control/singlerace_panel9/sfcyoption_label
+		var options = sr_sfcy()
+		
+		if $single_race_screen/Control/singlerace_panel9/sfcy_settings/sfcysettings_label1/sfcysettings1_radio1.button_pressed == true:
+			options_text.text = "RANDOM"
+		elif options == 'no sfcy': options_text.text = "NO SCHEDULED FCY"
+		elif options == '75% sfcy': options_text.text = "AT 75% OF THE RACE"
+		elif options == '50% sfcy': options_text.text = "AT 50% OF THE RACE"
+		elif options == '25% sfcy': options_text.text = "AT 25% OF THE RACE"
+		
 	elif current_anim != "singlerace_start":
 		$AnimationPlayer.play_backwards(current_anim)
 		$AnimationPlayer.queue("sr_sfcy")
@@ -307,25 +424,75 @@ func sr_opponent_field():
 	elif btns.sr_field_type_btn5.button_pressed == true: field_type = 'multi4_class'
 	elif btns.sr_field_type_btn6.button_pressed == true: field_type = 'multi5_class'
 	else:
-		#Não esquecer de mudar o nome da opção para 'random'
 		field_type = ['single_class', 'multi2_class', 'multi3_class', 'multi4_class', 'multi5_class'].pick_random()
-		
-
+	
+	
 	var classes_choosed = []
 	if btns.sr_field_type_check1.button_pressed == true: for x in database.caterhams: classes_choosed.append(x)
-	if btns.sr_field_type_check2.button_pressed == true: for x in database.fclassic: classes_choosed.append(x)
-	if btns.sr_field_type_check3.button_pressed == true: for x in database.fmodern: classes_choosed.append(x)
+	if btns.sr_field_type_check2.button_pressed == true:
+		for x in database.fclassic:
+			if 'class29' in x or 'class30' in x or 'class31' in x:
+				if $dlc_config_screen/dlc_panel/dlc_settings/dlc4.button_pressed == false: continue
+				else: classes_choosed.append(x)
+			if 'class12' in x or 'class13' in x:
+				if $dlc_config_screen/dlc_panel/dlc_settings/dlc14.button_pressed == false: continue
+				else: classes_choosed.append(x)
+			else: classes_choosed.append(x)
+	if btns.sr_field_type_check3.button_pressed == true:
+		for x in database.fmodern:
+			if 'class28' in x:
+				if $dlc_config_screen/dlc_panel/dlc_settings/dlc6.button_pressed == false: continue
+				else: classes_choosed.append(x)
+			else: classes_choosed.append(x)
 	if btns.sr_field_type_check4.button_pressed == true: for x in database.fretro: classes_choosed.append(x)
 	if btns.sr_field_type_check5.button_pressed == true: for x in database.fv10: classes_choosed.append(x)
 	if btns.sr_field_type_check6.button_pressed == true: for x in database.fvintage: classes_choosed.append(x)
 	if btns.sr_field_type_check7.button_pressed == true: for x in database.gthistorical: classes_choosed.append(x)
-	if btns.sr_field_type_check8.button_pressed == true: for x in database.gtmodern: classes_choosed.append(x)
+	if btns.sr_field_type_check8.button_pressed == true:
+		for x in database.gtmodern:
+			if 'class49' in x:
+				if $dlc_config_screen/dlc_panel/dlc_settings/dlc2.button_pressed == true: classes_choosed.append(x)
+				elif $dlc_config_screen/dlc_panel/dlc_settings/dlc20.button_pressed == true: classes_choosed.append(x)
+				else: continue
+			if 'class46' in x:
+				if $dlc_config_screen/dlc_panel/dlc_settings/dlc16.button_pressed == true: classes_choosed.append(x)
+				elif $dlc_config_screen/dlc_panel/dlc_settings/dlc18.button_pressed == true: classes_choosed.append(x)
+				elif $dlc_config_screen/dlc_panel/dlc_settings/dlc20.button_pressed == true: classes_choosed.append(x)
+				elif $dlc_config_screen/dlc_panel/dlc_settings/dlc22.button_pressed == true: classes_choosed.append(x)
+				else: continue
+			if 'class84' in x:
+				if $dlc_config_screen/dlc_panel/dlc_settings/dlc22.button_pressed == false: continue
+				else: classes_choosed.append(x)
+			if 'class91' in x or '':
+				if $dlc_config_screen/dlc_panel/dlc_settings/dlc20.button_pressed == false: continue
+				else: classes_choosed.append(x)
+			else: classes_choosed.append(x)
 	if btns.sr_field_type_check9.button_pressed == true: for x in database.kart: classes_choosed.append(x)
-	if btns.sr_field_type_check10.button_pressed == true: for x in database.prototypes: classes_choosed.append(x)
+	if btns.sr_field_type_check10.button_pressed == true:
+		for x in database.prototypes:
+			if 'class11' in x:
+				if $dlc_config_screen/dlc_panel/dlc_settings/dlc2.button_pressed == false: continue
+				else: classes_choosed.append(x)
+			if 'class59' in x:
+				if $dlc_config_screen/dlc_panel/dlc_settings/dlc16.button_pressed == true: classes_choosed.append(x)
+				elif $dlc_config_screen/dlc_panel/dlc_settings/dlc18.button_pressed == true: classes_choosed.append(x)
+				elif $dlc_config_screen/dlc_panel/dlc_settings/dlc20.button_pressed == true: classes_choosed.append(x)
+				elif $dlc_config_screen/dlc_panel/dlc_settings/dlc22.button_pressed == true: classes_choosed.append(x)
+				else: continue
+			if 'class60' in x or 'class61' in x:
+				if $dlc_config_screen/dlc_panel/dlc_settings/dlc18.button_pressed == false: continue
+				else: classes_choosed.append(x)
+			else: classes_choosed.append(x)
 	if btns.sr_field_type_check11.button_pressed == true: for x in database.rally: classes_choosed.append(x)
 	if btns.sr_field_type_check12.button_pressed == true: for x in database.stockhistorical: classes_choosed.append(x)
 	if btns.sr_field_type_check13.button_pressed == true: for x in database.stockmodern: classes_choosed.append(x)
-	if btns.sr_field_type_check14.button_pressed == true: for x in database.street: classes_choosed.append(x)
+	if btns.sr_field_type_check14.button_pressed == true:
+		for x in database.street:
+			if 'class53' in x:
+				if $dlc_config_screen/dlc_panel/dlc_settings/dlc8.button_pressed == true: classes_choosed.append(x)
+				elif $dlc_config_screen/dlc_panel/dlc_settings/dlc20.button_pressed == true: classes_choosed.append(x)
+				else: continue
+			else: continue
 	if btns.sr_field_type_check15.button_pressed == true: for x in database.touringhistoric: classes_choosed.append(x)
 	if btns.sr_field_type_check16.button_pressed == true: for x in database.touringmodern: classes_choosed.append(x)
 	if not classes_choosed:
@@ -337,9 +504,9 @@ func sr_opponent_field():
 		for x in database.fvintage: classes_choosed.append(x)
 		for x in database.gthistorical: classes_choosed.append(x)
 		for x in database.gtmodern: classes_choosed.append(x)
-		for x in database.kart: classes_choosed.append(x)
+		#for x in database.kart: classes_choosed.append(x)
 		for x in database.prototypes: classes_choosed.append(x)
-		for x in database.rally: classes_choosed.append(x)
+		#for x in database.rally: classes_choosed.append(x)
 		for x in database.stockhistorical: classes_choosed.append(x)
 		for x in database.stockmodern: classes_choosed.append(x)
 		for x in database.street: classes_choosed.append(x)
@@ -351,32 +518,27 @@ func sr_opponent_field():
 	
 func sr_race_length():
 	var race_length = 'random'
-	#Não esquecer de mudar os textos com as opções
 	if btns.sr_race_length_btn2.button_pressed == true: race_length = 'minimum'
 	elif btns.sr_race_length_btn3.button_pressed == true: race_length = 'short'
 	elif btns.sr_race_length_btn4.button_pressed == true: race_length = 'medium'
 	elif btns.sr_race_length_btn5.button_pressed == true: race_length = 'long'
 	elif btns.sr_race_length_btn6.button_pressed == true:
-		#não esquecer de mudar o texto para 'ENDURANCE RANDOM'
 		race_length = ['endurance short', 'endurance medium', 'endurance long'].pick_random()
 	elif btns.sr_race_length_btn7.button_pressed == true: race_length = 'endurance short'
 	elif btns.sr_race_length_btn8.button_pressed == true: race_length = 'endurance medium'
 	elif btns.sr_race_length_btn9.button_pressed == true: race_length = 'endurance long'
 	elif btns.sr_race_length_btn10.button_pressed == true: race_length = 'are you crazy'
 	else:
-		#não esquecer de mudar o texto para RANDOM
 		race_length = ['minimum', 'short', 'medium', 'long', 'endurance short', 'endurance medium', 'endurance long', 'are you crazy'].pick_random()
 	
 	return race_length
 
 func sr_time_period_progression():
 	var time_period = 'random'
-	#Não esquecer de mudar o texto
 	if btns.sr_time_period_btn2.button_pressed == true: time_period = 'day'
 	elif btns.sr_time_period_btn3.button_pressed == true: time_period = 'night'
 	else: time_period = ['day', 'night'].pick_random()
 	
-	#Não esquecer de mudar o texto
 	var time_progression = 'random'
 	if btns.sr_time_progression_btn2.button_pressed == true: time_progression = 'daylight only'
 	elif btns.sr_time_progression_btn3.button_pressed == true: time_progression = 'nighttime only'
@@ -448,7 +610,7 @@ func sr_tire_fuel():
 func sr_fcy():
 	var fcy = 'random'
 	if btns.sr_fcy_btn2.button_pressed == true: fcy = 'no fcy'
-	elif btns.sr_fcy_btn2.button_pressed == true: fcy = 'with fcy'
+	elif btns.sr_fcy_btn3.button_pressed == true: fcy = 'with fcy'
 	else: fcy = 'random'
 	
 	return fcy
@@ -464,6 +626,7 @@ func sr_sfcy():
 	return sfcy
 
 func sr_confirm():
+	randomize()
 	class_check(sr_opponent_field())
 	progression_check(sr_time_period_progression(), sr_race_length())
 	weather_check(sr_weather())
@@ -472,15 +635,15 @@ func sr_confirm():
 	tire_fuel_check(sr_tire_fuel())
 	fcy_check(sr_fcy())
 	sfcy_check(sr_sfcy())
+	race_title()
 
 #SINGLE RACE CONFIRM LOGICS
 func class_check(opponent_field):
-	randomize()
 	var class_null = database.class_null
 	var field_type = opponent_field[0]
 	var classes = opponent_field[1]
 	
-	#decide how many classes are available to choose
+	#Decide how many classes are available to choose
 	var class_count = 0
 	for x in classes:
 		class_count +=1
@@ -491,24 +654,19 @@ func class_check(opponent_field):
 		elif field_type == 'multi5_class' and class_count >= 5: break
 		else: continue
 	
-	#decide NORMAL, KART or RALLY
-	var motorsport = randi_range(1,10)
-	if motorsport <= 8: motorsport = 'normal'
-	else:
-		for x in classes:
-			if x in database.kart:
-				motorsport = 'kart'
-				break
-			elif x in database.rally:
-				motorsport = 'rally'
-				break
-			else: motorsport = 'normal'
+	#Decide NORMAL, KART or RALLY
+	var motorsport = 'normal'
+	var option_text = $single_race_screen/Control/singlerace_panel1/fieldtypeoption_label
+	if 'KARTS ONLY' in option_text.text: motorsport = 'kart'
+	elif 'RALLY ONLY' in option_text.text: motorsport = 'rally'
 	
 	#Choose all the classes
 	var classes_choosed = [class_null, class_null, class_null, class_null, class_null]
 	while class_count > 0:
 		var current_class = classes.pick_random()
 		if current_class in classes_choosed: continue
+		elif motorsport == 'kart' and current_class not in database.kart: continue
+		elif motorsport == 'rally' and current_class not in database.rally: continue
 		else:
 			classes_choosed[class_count-1] = current_class
 			class_count -= 1
@@ -519,6 +677,79 @@ func class_check(opponent_field):
 	$single_race_screen/Control/srgen_panel/srgen_settings/class_img3.texture = load(classes_choosed[2])
 	$single_race_screen/Control/srgen_panel/srgen_settings/class_img4.texture = load(classes_choosed[3])
 	$single_race_screen/Control/srgen_panel/srgen_settings/class_img5.texture = load(classes_choosed[4])
+	
+	#Decide the track
+	var track_text = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_track
+	if motorsport == 'kart': track_text.text = tracksdb.kart_tracks.pick_random()
+	elif motorsport == 'rally': track_text.text = tracksdb.rx_tracks.pick_random()
+	else: track_text.text = choose_track()
+
+func choose_track():
+	var tracks = tracksdb.normal_tracks
+	var track_choosed = 'A TRACK OF YOUR CHOICE !'
+
+	if $dlc_config_screen/dlc_panel/dlc_settings/dlc1.button_pressed == false:
+		for x in tracks:
+			if 'Hockenheim' in x: tracks.erase(x)
+	if $dlc_config_screen/dlc_panel/dlc_settings/dlc2.button_pressed == false:
+		for x in tracks:
+			if 'Daytona' in x: tracks.erase(x)
+			elif 'Laguna' in x: tracks.erase(x)
+			elif 'Long Beach' in x: tracks.erase(x)
+	if $dlc_config_screen/dlc_panel/dlc_settings/dlc3.button_pressed == false:
+		for x in tracks:
+			if 'Silverstone' in x: tracks.erase(x)
+	if $dlc_config_screen/dlc_panel/dlc_settings/dlc4.button_pressed == false:
+		for x in tracks:
+			if 'Cleveland' in x: tracks.erase(x)
+			elif 'Watkins' in x: tracks.erase(x)
+			elif 'Road America' in x: tracks.erase(x)
+	if $dlc_config_screen/dlc_panel/dlc_settings/dlc5.button_pressed == false:
+		for x in tracks:
+			if 'Nordschleife' in x: tracks.erase(x)
+			elif 'Nurburgring' in x: tracks.erase(x)
+			elif 'Gesamtstrecke' in x: tracks.erase(x)
+			elif 'Betonschleife' in x: tracks.erase(x)
+			elif 'Sudschleife' in x: tracks.erase(x)
+	if $dlc_config_screen/dlc_panel/dlc_settings/dlc6.button_pressed == false:
+		for x in tracks:
+			if 'Indianapolis' in x: tracks.erase(x)
+			elif 'Fontana' in x: tracks.erase(x)
+			elif 'Gateway' in x: tracks.erase(x)
+	if $dlc_config_screen/dlc_panel/dlc_settings/dlc7.button_pressed == false:
+		for x in tracks:
+			if 'Spa-' in x: tracks.erase(x)
+	if $dlc_config_screen/dlc_panel/dlc_settings/dlc9.button_pressed == false:
+		for x in tracks:
+			if 'Monza' in x: tracks.erase(x)
+	if $dlc_config_screen/dlc_panel/dlc_settings/dlc11.button_pressed == false:
+		for x in tracks:
+			if 'Barcelona' in x: tracks.erase(x)
+	if $dlc_config_screen/dlc_panel/dlc_settings/dlc13.button_pressed == false:
+		for x in tracks:
+			if 'Cascais 1988' in x: tracks.erase(x)
+			elif 'Jerez 1988' in x: tracks.erase(x)
+			elif 'Bathurst 1983' in x: tracks.erase(x)
+	if $dlc_config_screen/dlc_panel/dlc_settings/dlc15.button_pressed == false:
+		for x in tracks:
+			if 'Barcelona 1991' in x: tracks.erase(x)
+			elif 'Interlagos 1991' in x: tracks.erase(x)
+			elif 'Interlagos 1993' in x: tracks.erase(x)
+			elif 'Montreal 1991' in x: tracks.erase(x)
+	if $dlc_config_screen/dlc_panel/dlc_settings/dlc17.button_pressed == false:
+		for x in tracks:
+			if 'Le Mans' in x: tracks.erase(x)
+	if $dlc_config_screen/dlc_panel/dlc_settings/dlc19.button_pressed == false:
+		for x in tracks:
+			if 'Canadian' in x: tracks.erase(x)
+			elif 'Atlanta' in x: tracks.erase(x)
+			elif 'Sebring' in x: tracks.erase(x)
+	if $dlc_config_screen/dlc_panel/dlc_settings/dlc21.button_pressed == false:
+		for x in tracks:
+			if 'Nordschleife 2025' in x: tracks.erase(x)
+	tracks.shuffle()
+	track_choosed = tracks.pick_random()
+	return track_choosed
 
 func progression_check(time_period, race_length):
 	var race_length_text = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_racelength
@@ -664,19 +895,19 @@ func weather_check(weather):
 			weathers[2] = weathers_choosed.pick_random()
 			weathers[3] = weathers_choosed.pick_random()
 	else:
-		if weather_slots == 1 : weathers[0] = database.clean_weathers[8]
+		if weather_slots == 1 : weathers[0] = database.random_weather
 		elif weather_slots == 2 :
-			weathers[0] = database.clean_weathers[8]
-			weathers[1] = database.clean_weathers[8]
+			weathers[0] = database.random_weather
+			weathers[1] = database.random_weather
 		elif weather_slots == 3 :
-			weathers[0] = database.clean_weathers[8]
-			weathers[1] = database.clean_weathers[8]
-			weathers[2] = database.clean_weathers[8]
+			weathers[0] = database.random_weather
+			weathers[1] = database.random_weather
+			weathers[2] = database.random_weather
 		else:
-			weathers[0] = database.clean_weathers[8]
-			weathers[1] = database.clean_weathers[8]
-			weathers[2] = database.clean_weathers[8]
-			weathers[3] = database.clean_weathers[8]
+			weathers[0] = database.random_weather
+			weathers[1] = database.random_weather
+			weathers[2] = database.random_weather
+			weathers[3] = database.random_weather
 	
 	#apply the results
 	$single_race_screen/Control/srgen_panel/srgen_settings/weather_img1.texture = load(weathers[0])
@@ -764,3 +995,82 @@ func sfcy_check(sfcy):
 		elif sfcy_choosed == '75% sfcy': sfcy_text.text = '-  75% race Scheduled Full Course Yellow'
 		elif sfcy_choosed == '50% sfcy': sfcy_text.text = '-  50% race Scheduled Full Course Yellow'
 		elif sfcy_choosed == '25% sfcy': sfcy_text.text = '-  25% race Scheduled Full Course Yellow'
+
+func race_title():
+	randomize()
+	var title_race = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_title
+	var opponent_option_text = $single_race_screen/Control/singlerace_panel1/fieldtypeoption_label
+	var progression_option_text = $single_race_screen/Control/singlerace_panel3/timeperiodoption_label
+	var weather_option_text = $single_race_screen/Control/singlerace_panel4/weatheroption_label
+	var starttime_text = $single_race_screen/Control/srgen_panel/srgen_settings/srgen_starttime
+	var class_amount_text = $single_race_screen/Control/singlerace_panel1/fieldtypeoption_label
+	var titles_options = []
+	if 'CATERHAMS ONLY' in opponent_option_text.text: titles_options.append(database.class_titles[0])
+	elif 'F.CLASSICS ONLY' in opponent_option_text.text  or 'F.V10s ONLY' in opponent_option_text.text:
+		titles_options.append(database.class_titles[1])
+	elif 'F.RETROS ONLY' in opponent_option_text.text or 'F.VINTAGES' in opponent_option_text.text:
+		titles_options.append(database.class_titles[1])
+	elif 'F.MODERN ONLY' in opponent_option_text.text: titles_options.append(database.class_titles[2])
+	elif 'HISTORICAL GT ONLY' in opponent_option_text.text: titles_options.append(database.class_titles[3])
+	elif 'MODERN GT ONLY' in opponent_option_text.text: titles_options.append(database.class_titles[4])
+	elif 'KARTS ONLY' in opponent_option_text.text: titles_options.append(database.class_titles[5])
+	elif 'PROTOTYPES ONLY' in opponent_option_text.text: titles_options.append(database.class_titles[6])
+	elif 'RALLY ONLY' in opponent_option_text.text: titles_options.append(database.class_titles[7])
+	elif 'HISTORICAL STOCK CARS ONLY' in opponent_option_text.text: titles_options.append(database.class_titles[8])
+	elif 'MODERN STOCK CARS ONLY' in opponent_option_text.text: titles_options.append(database.class_titles[9])
+	elif 'STREET-SUPER-HYPER CARS ONLY' in opponent_option_text.text: titles_options.append(database.class_titles[10])
+	elif 'MODERN TOURING ONLY' in opponent_option_text.text: titles_options.append(database.class_titles[10])
+	elif 'HISTORICAL TOURING ONLY' in opponent_option_text.text: titles_options.append(database.class_titles[11])
+	elif 'RANDOM CLASSES' in class_amount_text.text or 'SINGLE CLASS' in class_amount_text.text: pass
+	else: titles_options.append(database.class_titles[12])
+	
+	if 'RACE ONLY AT DAYLIGHT' in progression_option_text.text: titles_options.append(database.weather_titles[6])
+	elif 'RACE ONLY AT NIGHTTIME' in progression_option_text.text: titles_options.append(database.weather_titles[7])
+	
+	if 'SIMULATE A 3 HOURS RACE' in progression_option_text.text: titles_options.append(database.progression_titles[0])
+	elif 'SIMULATE A 6 HOURS RACE' in progression_option_text.text: titles_options.append(database.progression_titles[1])
+	elif 'SIMULATE A 12 HOURS RACE' in progression_option_text.text:
+		titles_options.append(database.progression_titles[2])
+		titles_options.append(database.progression_titles[3])
+	elif 'SIMULATE A 24 HOURS RACE' in progression_option_text.text: titles_options.append(database.progression_titles[4])
+	elif 'SIMULATE A 36 HOURS RACE' in progression_option_text.text: titles_options.append(database.progression_titles[5])
+	elif 'SIMULATE A 48 HOURS RACE' in progression_option_text.text:
+		titles_options.append(database.progression_titles[6])
+		titles_options.append(database.progression_titles[7])
+	
+	if 'REMOVE RAINING WEATHERS' in weather_option_text.text:
+		titles_options.append(database.weather_titles[8])
+		if starttime_text.text in database.day_times: titles_options.append(database.weather_titles[0])
+		elif starttime_text.text in database.night_times: titles_options.append(database.weather_titles[1])
+	elif 'ONLY RAINING WEATHERS' in weather_option_text.text:
+		titles_options.append(database.weather_titles[2])
+		titles_options.append(database.weather_titles[4])
+		titles_options.append(database.weather_titles[9])
+		if starttime_text.text in database.night_times: titles_options.append(database.weather_titles[3])
+	
+	for x in database.day_times:
+		if x in starttime_text.text:
+			titles_options.append(database.daytime_titles[0])
+			titles_options.append(database.daytime_titles[2])
+			titles_options.append(database.daytime_titles[8])
+			titles_options.append(database.daytime_titles[9])
+	for x in database.night_times:
+		if x in starttime_text.text:
+			titles_options.append(database.daytime_titles[1])
+			titles_options.append(database.daytime_titles[3])
+			titles_options.append(database.daytime_titles[8])
+			titles_options.append(database.daytime_titles[10])
+	if database.day_times[4] in starttime_text.text: titles_options.append(database.daytime_titles[4])
+	elif database.night_times[0] in starttime_text.text: titles_options.append(database.daytime_titles[5])
+	if database.day_times[0] in starttime_text.text or database.day_times[1] in starttime_text.text:
+		titles_options.append(database.daytime_titles[6])
+		titles_options.append(database.daytime_titles[7])
+	
+	if not titles_options:
+		title_race.text = 'The  ' + database.complement_titles.pick_random() + '  at'
+	else:
+		var random_title = randi_range(0,3)
+		if random_title == 0: title_race.text = 'The  ' + database.complement_titles.pick_random() + '  at'
+		else:
+			titles_options.shuffle()
+			title_race.text = 'The  ' + titles_options.pick_random() + ' ' + database.complement_titles.pick_random() + '  at'

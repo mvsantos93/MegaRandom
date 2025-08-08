@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://8um3nltfnkad"]
+[gd_scene load_steps=61 format=3 uid="uid://8um3nltfnkad"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_b84iu"]
 [ext_resource type="Texture2D" uid="uid://bttbsdukvp3t0" path="res://Images/Backgrounds/bg1.jpg" id="1_u3wl8"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://s0x10sw8fx2" path="res://Images/Buttons/pb_hover.png" id="19_s27io"]
 [ext_resource type="Texture2D" uid="uid://duljjx000ygyv" path="res://Images/Buttons/pb_selected.png" id="20_c0k5n"]
 [ext_resource type="Texture2D" uid="uid://c1iing30blap5" path="res://Images/Buttons/square_check.png" id="20_q6ri4"]
+[ext_resource type="Script" path="res://Scripts/tracksdb.gd" id="28_gf6p3"]
 [ext_resource type="Script" path="res://Scripts/btns.gd" id="28_nixb4"]
 [ext_resource type="Script" path="res://Scripts/database.gd" id="29_dgvr6"]
 
@@ -1730,7 +1731,7 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1007, 0), Vector2(1007, 800)]
+"values": [Vector2(1007, 0), Vector2(1007, 380)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -1742,7 +1743,7 @@ tracks/10/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(253, 445), Vector2(253, 20)]
+"values": [Vector2(256, 190), Vector2(256, 20)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -9084,7 +9085,7 @@ offset_right = 156.0
 offset_bottom = 31.0
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 27
-text = "MANDATORY PITSTOP - NO TIRES CHANGE"
+text = "MANDATORY PITSTOP  -  NO TIRES CHANGE"
 vertical_alignment = 1
 uppercase = true
 
@@ -9108,7 +9109,7 @@ offset_right = 156.0
 offset_bottom = 31.0
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 27
-text = "MANDATORY PITSTOP - 2 TIRES CHANGE"
+text = "MANDATORY PITSTOP  -  2 TIRES CHANGE"
 vertical_alignment = 1
 uppercase = true
 
@@ -9132,7 +9133,7 @@ offset_right = 156.0
 offset_bottom = 31.0
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 27
-text = "MANDATORY PITSTOP - 4 TIRES CHANGE"
+text = "MANDATORY PITSTOP  -  4 TIRES CHANGE"
 vertical_alignment = 1
 uppercase = true
 
@@ -9972,7 +9973,7 @@ theme_override_colors/font_outline_color = Color(0.784314, 0.215686, 0.215686, 1
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 50
-text = "VIRGINIA INTERNATIONAL SOUTH"
+text = "Watkins Glen short (inner loop)"
 horizontal_alignment = 1
 clip_text = true
 uppercase = true
@@ -10188,10 +10189,10 @@ clip_text = true
 
 [node name="dlc_confirmed" type="Label" parent="dlc_config_screen/dlc_panel/dlc_settings"]
 visible = false
-offset_left = 291.0
-offset_top = 740.0
-offset_right = 710.0
-offset_bottom = 772.0
+offset_left = 280.0
+offset_top = 760.0
+offset_right = 699.0
+offset_bottom = 792.0
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 27
 text = "YOUR SETTINGS HAS BEEN SAVED!"
@@ -10532,7 +10533,7 @@ offset_right = 156.0
 offset_bottom = 31.0
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 27
-text = "LEMANS PACK"
+text = "HISTORICAL TRACK PACK PT2"
 vertical_alignment = 1
 uppercase = true
 
@@ -10574,7 +10575,7 @@ offset_right = 156.0
 offset_bottom = 31.0
 theme_override_fonts/font = ExtResource("3_jr3un")
 theme_override_font_sizes/font_size = 27
-text = "IMSA TRACK PACK"
+text = "LEMANS PACK"
 vertical_alignment = 1
 uppercase = true
 
@@ -10599,6 +10600,27 @@ text = "ENDURANCE PACK PT2"
 vertical_alignment = 1
 uppercase = true
 
+[node name="dlc19" type="TextureButton" parent="dlc_config_screen/dlc_panel/dlc_settings"]
+offset_left = 20.0
+offset_top = 652.0
+offset_right = 50.0
+offset_bottom = 682.0
+toggle_mode = true
+texture_normal = ExtResource("19_5uarv")
+texture_pressed = ExtResource("20_q6ri4")
+
+[node name="dlc_label" type="Label" parent="dlc_config_screen/dlc_panel/dlc_settings/dlc19"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = -1.0
+offset_right = 156.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("3_jr3un")
+theme_override_font_sizes/font_size = 27
+text = "IMSA TRACK PACK"
+vertical_alignment = 1
+uppercase = true
+
 [node name="dlc20" type="TextureButton" parent="dlc_config_screen/dlc_panel/dlc_settings"]
 offset_left = 579.0
 offset_top = 652.0
@@ -10609,6 +10631,48 @@ texture_normal = ExtResource("19_5uarv")
 texture_pressed = ExtResource("20_q6ri4")
 
 [node name="dlc_label" type="Label" parent="dlc_config_screen/dlc_panel/dlc_settings/dlc20"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = -1.0
+offset_right = 156.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("3_jr3un")
+theme_override_font_sizes/font_size = 27
+text = "ENDURANCE PACK PT3"
+vertical_alignment = 1
+uppercase = true
+
+[node name="dlc21" type="TextureButton" parent="dlc_config_screen/dlc_panel/dlc_settings"]
+offset_left = 20.0
+offset_top = 716.0
+offset_right = 50.0
+offset_bottom = 746.0
+toggle_mode = true
+texture_normal = ExtResource("19_5uarv")
+texture_pressed = ExtResource("20_q6ri4")
+
+[node name="dlc_label" type="Label" parent="dlc_config_screen/dlc_panel/dlc_settings/dlc21"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = -1.0
+offset_right = 292.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("3_jr3un")
+theme_override_font_sizes/font_size = 27
+text = "NÜRBURGRING 2025"
+vertical_alignment = 1
+uppercase = true
+
+[node name="dlc22" type="TextureButton" parent="dlc_config_screen/dlc_panel/dlc_settings"]
+offset_left = 579.0
+offset_top = 716.0
+offset_right = 609.0
+offset_bottom = 746.0
+toggle_mode = true
+texture_normal = ExtResource("19_5uarv")
+texture_pressed = ExtResource("20_q6ri4")
+
+[node name="dlc_label" type="Label" parent="dlc_config_screen/dlc_panel/dlc_settings/dlc22"]
 layout_mode = 0
 offset_left = 40.0
 offset_top = -1.0
@@ -10797,7 +10861,7 @@ theme_override_font_sizes/font_size = 27
 text = "This app and all my other mods / skinpacks are and will always be FREE TO USE.
 
 Unfortunately this comes with the cost of my time, which I could be using to make
-money in another way.
+money in other ways.
 
 So if your kind heart wants to financially support all the time invested developing
 this and my other mods, you can give me a tip directly to my paypal account:
@@ -10805,7 +10869,7 @@ this and my other mods, you can give me a tip directly to my paypal account:
 
 
 
-                     For reference:  1 BRL (my currency) =  $ 0,17 USD  or  $ 0,16 EUR
+                     For reference:  1 BRL (my currency) =  $ 0,18 USD  or  $ 0,15 EUR
 
 
 Any amount is highly appreciated ! This will help me pay the bills and of course,
@@ -10846,6 +10910,9 @@ script = ExtResource("28_nixb4")
 
 [node name="Database" type="Node" parent="."]
 script = ExtResource("29_dgvr6")
+
+[node name="Tracks Database" type="Node" parent="."]
+script = ExtResource("28_gf6p3")
 
 [connection signal="pressed" from="taskbar/Control/taskbar_button1" to="." method="_on_singlerace_button_pressed"]
 [connection signal="pressed" from="taskbar/Control/taskbar_button3" to="." method="_on_dlc_button_pressed"]
