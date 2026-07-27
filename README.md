@@ -5,9 +5,9 @@ The v*2.0* of this app was developed with **Godot** engine and **GDScript** lang
 <br>
 Disclaimer: This app was developed as a mod and has no affiliation with the game's developers or their partners.
 
-<a>
+<a href="readme images/00.png">
     <br>
-    <img src="https://www.overtake.gg/attachments/00-png.864100/" alt="app's logo">
+    <img src="readme images/00.png" alt="app's logo">
     <br>
     <br>
 </a>
@@ -21,9 +21,9 @@ Disclaimer: This app was developed as a mod and has no affiliation with the game
 - Randomizations of all tracks presented in the game (until v1.6.3 of the game);
 - Randomizations of Start type, start time, tire wear and fuel usage;
   
-<a>
+<a href="readme images/01.jpg">
     <br>
-    <img src="https://www.overtake.gg/attachments/01-jpg.864102/" alt="app's logo">
+    <img src="readme images/01.jpg" alt="v2.0 Main Screen">
     <br>
     <br>
 </a>
@@ -38,17 +38,21 @@ Disclaimer: This app was developed as a mod and has no affiliation with the game
 - Godot 4.7
 - GDScript
 
-<a>
+<a href="readme images/02.jpg">
     <br>
-    <img src="https://www.overtake.gg/attachments/02-jpg.864101/" alt="main screen">
+    <img src="readme images/02.jpg" alt="Race setup screen">
+    <br>
+    <br>
+    <br>
+    <br>
     <br>
     <br>
 </a>
 
 **Main screen of the v1.0**
-<a>
+<a href="readme images/03.jpeg">
     <br>
-    <img src="https://media.licdn.com/dms/image/v2/D4D2DAQH1oVi9x5v1GA/profile-treasury-image-shrink_8192_8192/profile-treasury-image-shrink_8192_8192/0/1722515052642?e=1784656800&v=beta&t=sjta_08PXmefAN-3Ze9Odq8pblHOkiPIietNGcwNEp8" alt="main screen">
+    <img src="readme images/03.jpeg" alt="v1.0 Main Screen">
     <br>
     <br>
 </a>
